@@ -1,0 +1,3528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Repositorio pedagógico de los Centros de Interés de la Institución Educativa Internado Charco Trece.">
+  <title>Centros de Interés | I.E. Charco Trece</title>
+  <style>
+    :root {
+      --verde:#168c47; --verde2:#0b5a31; --verde3:#eaf6ee; --amarillo:#f5c33b;
+      --morado:#6552bb; --azul:#277bc0; --texto:#203128; --gris:#64716a;
+      --linea:#dfe9e2; --blanco:#fff; --fondo:#f7faf8; --deporte:#e78324;
+      --shadow:0 14px 38px rgba(19,77,43,.12); --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--texto);background:#fbfdfb;line-height:1.55}
+    a{color:inherit;text-decoration:none} img{max-width:100%;display:block}
+    section{padding:72px clamp(18px,5vw,70px);scroll-margin-top:82px}
+    .container{width:min(1160px,100%);margin:auto}
+    .topbar{position:sticky;top:0;z-index:80;display:flex;align-items:center;gap:26px;
+      padding:9px clamp(16px,4vw,58px);background:rgba(255,255,255,.97);
+      border-bottom:1px solid rgba(22,140,71,.12);backdrop-filter:blur(10px)}
+    .brand{display:flex;align-items:center;gap:11px;min-width:235px}
+    .brand img{width:54px;height:54px;object-fit:contain}
+    .brand strong{display:block;color:var(--verde2);font-size:.96rem}
+    .brand small{display:block;color:var(--gris);font-size:.72rem}
+    nav{margin-left:auto;display:flex;align-items:center;gap:17px;font-size:.87rem;font-weight:800}
+    nav>a:hover{color:var(--verde)}
+    .pta-mini{display:flex;align-items:center;gap:8px;padding-left:14px;border-left:1px solid var(--linea)}
+    .pta-dot{width:43px;height:43px;border-radius:50%;display:grid;place-items:center;text-align:center;
+      color:white;font-size:.68rem;font-weight:900;line-height:1;background:linear-gradient(145deg,var(--morado),var(--azul))}
+    .pta-mini span{max-width:150px;font-size:.66rem;line-height:1.1;color:var(--gris)}
+
+    .nav-dropdown{position:relative;display:flex;align-items:center}
+    .nav-dropbtn{border:0;background:none;font:inherit;font-weight:800;color:var(--texto);cursor:pointer;padding:12px 0}
+    .nav-dropbtn:hover{color:var(--verde)}
+    .nav-dropdown-menu{position:absolute;top:calc(100% + 9px);left:50%;transform:translate(-50%,8px);
+      width:340px;max-height:540px;overflow:auto;background:white;padding:9px;border-radius:18px;
+      border:1px solid var(--linea);box-shadow:0 22px 55px rgba(15,69,39,.2);
+      opacity:0;visibility:hidden;pointer-events:none;transition:.18s}
+    .nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown:focus-within .nav-dropdown-menu,.nav-dropdown.is-open .nav-dropdown-menu{
+      opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0)}
+    .nav-dropdown-menu a{display:flex;gap:10px;align-items:center;padding:9px 10px;border-radius:12px;font-size:.8rem;line-height:1.15}
+    .nav-dropdown-menu a:hover{background:var(--verde3)}
+    .nav-dropdown-menu small{display:block;color:var(--gris);font-size:.67rem;margin-top:2px}
+    .center-number{flex:0 0 31px;width:31px;height:31px;border-radius:10px;display:grid;place-items:center;background:var(--verde3);color:var(--verde2);font-weight:900;font-size:.72rem}
+    .nav-dropdown-menu .active-center{background:linear-gradient(135deg,var(--verde2),var(--verde));color:white;margin-bottom:4px}
+    .nav-dropdown-menu .active-center small{color:rgba(255,255,255,.8)}
+    .nav-dropdown-menu .active-center .center-number{background:rgba(255,255,255,.18);color:white}
+    .nav-dropdown-menu .sports{background:linear-gradient(135deg,#a95812,var(--deporte))}
+
+    .hero{min-height:72vh;display:flex;align-items:center;color:#fff;background:
+      linear-gradient(90deg,rgba(5,61,32,.83),rgba(5,61,32,.57) 44%,rgba(5,61,32,.08) 77%),
+      url("imagen_001.jpg") center/cover no-repeat}
+    .hero-inner{width:min(1160px,90%);margin:auto;padding:60px 0}
+    .eyebrow{display:inline-block;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);font-size:.76rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+    .hero h1{font-size:clamp(2.5rem,6vw,5.4rem);line-height:.98;margin:16px 0 13px;letter-spacing:-.04em}
+    .hero p{max-width:700px;font-size:1.13rem;color:rgba(255,255,255,.94)}
+    .actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:25px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 18px;border-radius:999px;font-weight:900;border:2px solid transparent;cursor:pointer}
+    .btn-primary{background:var(--amarillo);color:#324414} .btn-outline{border-color:rgba(255,255,255,.7);color:white;background:rgba(255,255,255,.06)}
+
+    .kicker{font-size:.75rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--verde);margin-bottom:7px}
+    h2{font-size:clamp(1.85rem,4vw,3rem);line-height:1.08;color:var(--verde2);margin:0 0 13px}
+    h3{color:var(--verde2)}
+    .intro{max-width:850px;color:var(--gris);font-size:1.02rem;margin-bottom:30px}
+    .panel{background:white;border:1px solid var(--linea);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+
+    .structure{background:#f4faf6}
+    .structure-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .structure-item{background:white;border:1px solid var(--linea);border-radius:16px;padding:17px;min-height:120px}
+    .structure-item b{display:block;color:var(--verde2);margin-bottom:5px}
+    .structure-item span{font-size:.86rem;color:var(--gris)}
+
+    .centers-overview{background:white}
+    .center-summary{position:relative;overflow:hidden;border-radius:24px;border:1px solid var(--linea);box-shadow:var(--shadow);background:#fff}
+    .center-summary .top{padding:26px;color:white;background:linear-gradient(135deg,var(--verde2),var(--verde))}
+    .center-summary.sport .top{background:linear-gradient(135deg,#a95812,var(--deporte))}
+    .center-summary .top small{opacity:.82;font-weight:800}
+    .center-summary .top h3{margin:6px 0 7px;color:white;font-size:1.5rem}
+    .center-summary .body{padding:22px}
+    .status{display:inline-block;padding:6px 10px;border-radius:999px;background:#eef7f1;color:var(--verde2);font-size:.73rem;font-weight:900}
+    .status.orange{background:#fff1e3;color:#984c0d}
+
+    .center-detail{background:#f7faf8}
+    .center-detail.alt{background:white}
+    .center-hero{display:grid;grid-template-columns:.8fr 1.2fr;gap:25px;align-items:stretch;margin-top:20px}
+    .center-cover{border-radius:26px;padding:34px;color:white;background:linear-gradient(145deg,var(--verde2),var(--verde));display:flex;flex-direction:column;justify-content:flex-end;min-height:370px;box-shadow:var(--shadow)}
+    .center-cover.sport{background:linear-gradient(145deg,#84420b,var(--deporte))}
+    .center-cover .ci-number{font-size:.78rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+    .center-cover h3{font-size:clamp(2rem,4vw,3.2rem);line-height:1.02;color:white;margin:10px 0}
+    .center-cover p{margin:0;color:rgba(255,255,255,.9)}
+    .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:18px 0}
+    .fact{background:#f6faf7;border-left:4px solid var(--verde);border-radius:13px;padding:12px}
+    .fact.orange{border-color:var(--deporte)}
+    .fact small{display:block;color:var(--gris);font-size:.7rem}
+    .fact b{color:var(--verde2)}
+
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:30px 0 16px}
+    .tab-btn{border:1px solid var(--linea);background:white;border-radius:999px;padding:8px 12px;font-weight:800;font-size:.78rem;cursor:pointer;color:var(--texto)}
+    .tab-btn.active,.tab-btn:hover{background:var(--verde2);color:white;border-color:var(--verde2)}
+    .sport-tabs .tab-btn.active,.sport-tabs .tab-btn:hover{background:#a95812;border-color:#a95812}
+    .tab-panel{display:none;background:white;border:1px solid var(--linea);border-radius:20px;padding:25px;box-shadow:0 8px 25px rgba(20,70,42,.06)}
+    .tab-panel.active{display:block}
+    .tab-panel ul,.tab-panel ol{padding-left:22px}
+    .tab-panel li{margin:6px 0}
+    .route{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .route div{padding:14px;border-radius:14px;background:var(--verde3);font-size:.84rem}
+    .route strong{display:block;color:var(--verde2);margin-bottom:3px}
+    .product-card{border-left:5px solid var(--amarillo);background:#fff9e7;border-radius:15px;padding:17px}
+    .feedback{background:#f0ebff;border-left:5px solid var(--morado);border-radius:15px;padding:18px}
+    .feedback b{color:#4d3b9b}
+
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+    .gallery-item{border:0;padding:0;background:none;border-radius:16px;overflow:hidden;cursor:pointer;box-shadow:0 7px 20px rgba(0,0,0,.10)}
+    .gallery-item img{width:100%;height:190px;object-fit:cover;transition:transform .2s}
+    .gallery-item:hover img{transform:scale(1.035)}
+
+    .people{background:#f4faf6}
+    .table-tools{display:flex;gap:10px;align-items:center;margin:18px 0}
+    .table-tools input{width:min(420px,100%);padding:11px 14px;border:1px solid #cfded3;border-radius:999px;font:inherit}
+    .staff-wrap{overflow:auto;border-radius:18px;border:1px solid var(--linea);background:white;box-shadow:var(--shadow)}
+    table{width:100%;border-collapse:collapse;min-width:720px}
+    th,td{padding:12px 14px;text-align:left;border-bottom:1px solid #e7eee9;font-size:.88rem}
+    th{background:var(--verde2);color:white;position:sticky;top:0}
+    tbody tr:hover{background:#f5faf6}
+
+    .docs{background:white}
+    .doc-card{border:1px solid var(--linea);border-radius:18px;padding:18px;background:#fff}
+    .doc-card .type{font-size:.7rem;font-weight:900;color:var(--verde);text-transform:uppercase;letter-spacing:.06em}
+    .doc-card h3{font-size:1.05rem;margin:6px 0}
+    .doc-card p{font-size:.86rem;color:var(--gris)}
+
+    .lightbox{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:22px}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:min(1100px,96vw);max-height:90vh;border-radius:15px}
+    .lightbox button{position:absolute;right:24px;top:18px;border:0;background:white;width:42px;height:42px;border-radius:50%;font-size:1.35rem;cursor:pointer}
+
+    footer{background:#0c2d1c;color:rgba(255,255,255,.8);padding:28px clamp(18px,5vw,70px)}
+    footer .container{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    footer b{color:white}
+    .footer-credit{
+      width:100%;
+      margin-top:18px;
+      padding-top:16px;
+      border-top:1px solid rgba(255,255,255,.16);
+      text-align:center;
+      font-size:.9rem;
+      letter-spacing:.01em;
+      color:rgba(255,255,255,.88);
+    }
+    .footer-credit strong{color:white;}
+
+    @media(max-width:1040px){
+      nav{display:none} .pta-mini{margin-left:auto}
+      .center-hero,.grid-2{grid-template-columns:1fr}
+      .structure-grid{grid-template-columns:repeat(2,1fr)}
+      .route{grid-template-columns:repeat(2,1fr)}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:620px){
+      section{padding-top:54px;padding-bottom:54px}
+      .brand{min-width:auto} .brand small,.pta-mini span{display:none}
+      .structure-grid,.grid-3,.facts{grid-template-columns:1fr}
+      .gallery{grid-template-columns:1fr 1fr}
+      .gallery-item img{height:150px}
+      .route{grid-template-columns:1fr}
+    }
+
+    /* Centro 3 — Tecno-rural robótica */
+    :root { --tech:#0f7790; --tech2:#075066; --tech3:#e8f7fa; }
+    .nav-dropdown-menu .techno-menu{background:linear-gradient(135deg,var(--tech2),var(--tech));}
+    .center-summary.tech .top{background:linear-gradient(135deg,var(--tech2),var(--tech));}
+    .status.blue{background:var(--tech3);color:var(--tech2);}
+    .center-cover.tech{background:
+      linear-gradient(145deg,rgba(7,80,102,.92),rgba(15,119,144,.83)),
+      var(--tech);}
+    .fact.blue{border-color:var(--tech);}
+    .tech-tabs .tab-btn.active,.tech-tabs .tab-btn:hover{background:var(--tech2);border-color:var(--tech2);}
+    .tech-route div{background:var(--tech3);}
+    .tech-route strong{color:var(--tech2);}
+    .tech-product{border-left-color:var(--tech);background:#eefbfc;}
+    .evidence-split{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;}
+    .video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;}
+    .video-card{border:1px solid var(--linea);border-radius:16px;overflow:hidden;background:white;box-shadow:0 8px 20px rgba(20,70,42,.07);}
+    .video-card img{width:100%;height:150px;object-fit:cover;}
+    .video-card .vcopy{padding:12px;}
+    .video-card b{display:block;color:var(--tech2);font-size:.86rem;}
+    .video-card span{display:block;color:var(--gris);font-size:.75rem;margin-top:3px;}
+    .video-note{margin-top:14px;padding:14px;border-radius:13px;background:#fff8dd;border-left:4px solid var(--amarillo);font-size:.86rem;color:#5d5221;}
+    @media(max-width:1040px){.video-grid{grid-template-columns:repeat(2,1fr)}.evidence-split{grid-template-columns:1fr}}
+    @media(max-width:620px){.video-grid{grid-template-columns:1fr}}
+
+
+    /* Centro 4 — Acepto mis emociones para vivir en paz */
+    :root{--emo:#a94f8f;--emo2:#6f365f;--emo3:#fbecf6;--emo4:#f4d8ea;}
+    .nav-dropdown-menu .emotions-menu{background:linear-gradient(135deg,var(--emo2),var(--emo));}
+    .center-summary.emo .top{background:linear-gradient(135deg,var(--emo2),var(--emo));}
+    .status.pink{background:var(--emo3);color:var(--emo2);}
+    .center-cover.emo{background:linear-gradient(145deg,var(--emo2),var(--emo));}
+    .fact.pink{border-color:var(--emo);}
+    .emo-tabs .tab-btn.active,.emo-tabs .tab-btn:hover{background:var(--emo2);border-color:var(--emo2);}
+    .emo-route div{background:var(--emo3);}
+    .emo-route strong{color:var(--emo2);}
+    .emo-product{border-left-color:var(--emo);background:#fff4fb;}
+    .reading-card{background:linear-gradient(135deg,#fff7fb,#f8edf6);border:1px solid #ead5e3;border-radius:18px;padding:20px;margin:14px 0;}
+    .reading-card h3{color:var(--emo2);margin-top:0;}
+    .impact-card{background:#f8f5ff;border-left:5px solid #7e68bb;border-radius:15px;padding:18px;}
+    .privacy-note{margin-top:16px;padding:13px 15px;border-radius:13px;background:#fff8dd;border-left:4px solid var(--amarillo);font-size:.85rem;color:#5d5221;}
+
+
+    /* =========================================================
+       PTA/FI 3.0 — DISEÑO RESTAURADO DE LA VERSIÓN INICIAL
+       ========================================================= */
+    .pta-section {
+      background: linear-gradient(135deg, rgba(111,63,180,.96), rgba(37,117,196,.92));
+      color: white;
+    }
+
+    .pta-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .pta-logo-large {
+      width: min(310px, 80vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      margin: auto;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background: rgba(255,255,255,.13);
+      border: 2px solid rgba(255,255,255,.35);
+      box-shadow: 0 25px 70px rgba(0,0,0,.16);
+      padding: 36px;
+    }
+
+    .pta-logo-large strong {
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .pta-logo-large span {
+      font-size: .9rem;
+      line-height: 1.25;
+    }
+
+    .pta-section .kicker,
+    .pta-section h2 {
+      color: white;
+    }
+
+    .pta-section .pta-intro {
+      color: rgba(255,255,255,.90);
+      max-width: 800px;
+    }
+
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .role {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.20);
+      border-radius: 16px;
+      padding: 15px;
+      font-weight: 800;
+    }
+
+    @media(max-width:1040px) {
+      .pta-grid { grid-template-columns: 1fr; }
+    }
+
+    @media(max-width:620px) {
+      .role-grid { grid-template-columns: 1fr; }
+    }
+
+
+    /* Centro 5 — Reciclando con jabón */
+    :root{
+      --eco:#2b9b7d;
+      --eco2:#176652;
+      --eco3:#e8f8f3;
+      --eco4:#d2f1e8;
+    }
+    .nav-dropdown-menu .eco-menu{
+      background:linear-gradient(135deg,var(--eco2),var(--eco));
+    }
+    .center-summary.eco .top{
+      background:linear-gradient(135deg,var(--eco2),var(--eco));
+    }
+    .status.mint{
+      background:var(--eco3);
+      color:var(--eco2);
+    }
+    .center-cover.eco{
+      background:linear-gradient(145deg,var(--eco2),var(--eco));
+    }
+    .fact.mint{
+      border-color:var(--eco);
+    }
+    .eco-tabs .tab-btn.active,
+    .eco-tabs .tab-btn:hover{
+      background:var(--eco2);
+      border-color:var(--eco2);
+    }
+    .eco-route div{
+      background:var(--eco3);
+    }
+    .eco-route strong{
+      color:var(--eco2);
+    }
+    .eco-product{
+      border-left-color:var(--eco);
+      background:#eefbf7;
+    }
+    .eco-question{
+      background:linear-gradient(135deg,#eefbf7,#f8fffc);
+      border:1px solid #cce9df;
+      border-radius:18px;
+      padding:20px;
+      margin:16px 0;
+      color:var(--eco2);
+      font-weight:800;
+      font-size:1.05rem;
+    }
+    .safety-box{
+      margin-top:16px;
+      background:#fff8dd;
+      border-left:5px solid var(--amarillo);
+      border-radius:14px;
+      padding:16px;
+      color:#5e5426;
+    }
+    .evaluation-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+      margin-top:14px;
+    }
+    .evaluation-grid div{
+      background:#f8fbf9;
+      border:1px solid var(--linea);
+      border-radius:14px;
+      padding:14px;
+    }
+    .evaluation-grid b{
+      display:block;
+      color:var(--eco2);
+      margin-bottom:4px;
+    }
+    @media(max-width:620px){
+      .evaluation-grid{grid-template-columns:1fr}
+    }
+
+
+    :root{--agro:#6d8f2f;--agro2:#355d24;--agro3:#eef6e5;--tierra:#8c5a2b;}
+    .nav-dropdown-menu .agro-menu{background:linear-gradient(135deg,var(--agro2),var(--agro));}
+    .center-summary.agro .top{background:linear-gradient(135deg,var(--agro2),var(--agro));}
+    .status.agro{background:var(--agro3);color:var(--agro2);}
+    .center-cover.agro{background:linear-gradient(145deg,var(--agro2),var(--agro));}
+    .fact.agro{border-color:var(--agro);}
+    .agro-tabs .tab-btn.active,.agro-tabs .tab-btn:hover{background:var(--agro2);border-color:var(--agro2);}
+    .agro-route div{background:var(--agro3);}.agro-route strong{color:var(--agro2);}
+    .agro-product{border-left-color:var(--agro);background:#f6fbea;}
+    .agro-lines{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px;}
+    .agro-line{border:1px solid var(--linea);border-radius:16px;padding:16px;background:white;}
+    .agro-line b{display:block;color:var(--agro2);margin-bottom:4px;}
+    .smart-huerta{margin-top:18px;padding:18px;border-radius:16px;background:linear-gradient(135deg,#eef7e7,#f8fbf4);border-left:5px solid var(--agro);}
+    .smart-huerta strong{color:var(--agro2);}
+    @media(max-width:900px){.agro-lines{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:620px){.agro-lines{grid-template-columns:1fr}}
+
+
+    /* Centro 7 — Chemistry in English */
+    :root{
+      --chem:#375cc5;
+      --chem2:#263983;
+      --chem3:#eef2ff;
+      --chem4:#7d55c7;
+      --chem5:#23a1a7;
+    }
+
+    .nav-dropdown-menu .chemistry-menu{
+      background:linear-gradient(135deg,var(--chem2),var(--chem4));
+    }
+
+    .center-summary.chemistry .top{
+      background:linear-gradient(135deg,var(--chem2),var(--chem),var(--chem4));
+    }
+
+    .status.chemistry{
+      background:var(--chem3);
+      color:var(--chem2);
+    }
+
+    .center-cover.chemistry{
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 80% 18%, rgba(255,255,255,.18), transparent 20%),
+        radial-gradient(circle at 15% 78%, rgba(255,255,255,.10), transparent 22%),
+        linear-gradient(145deg,var(--chem2),var(--chem),var(--chem4));
+    }
+
+    .center-cover.chemistry::after{
+      content:"H  He  Li  C  N  O  Na  Mg  Cl  Fe";
+      position:absolute;
+      right:-18px;
+      top:30px;
+      width:260px;
+      color:rgba(255,255,255,.16);
+      font-weight:900;
+      font-size:2rem;
+      line-height:1.7;
+      transform:rotate(-8deg);
+      pointer-events:none;
+    }
+
+    .fact.chemistry{
+      border-color:var(--chem);
+    }
+
+    .chem-tabs .tab-btn.active,
+    .chem-tabs .tab-btn:hover{
+      background:var(--chem2);
+      border-color:var(--chem2);
+    }
+
+    .chem-route div{
+      background:var(--chem3);
+    }
+
+    .chem-route strong{
+      color:var(--chem2);
+    }
+
+    .chem-product{
+      border-left-color:var(--chem4);
+      background:#f5f1ff;
+    }
+
+    .periodic-preview{
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:10px;
+      margin:18px 0;
+    }
+
+    .element-card{
+      border-radius:15px;
+      padding:14px 10px;
+      text-align:center;
+      background:linear-gradient(145deg,#fff,#f3f5ff);
+      border:1px solid #d9dff8;
+      box-shadow:0 7px 18px rgba(49,67,150,.08);
+    }
+
+    .element-card strong{
+      display:block;
+      font-size:1.55rem;
+      color:var(--chem2);
+      line-height:1;
+    }
+
+    .element-card small{
+      display:block;
+      color:var(--gris);
+      margin-top:5px;
+      font-size:.72rem;
+    }
+
+    .element-card span{
+      display:block;
+      margin-top:4px;
+      font-size:.72rem;
+      color:var(--chem4);
+      font-weight:800;
+    }
+
+    .interactive-box{
+      margin-top:18px;
+      padding:18px;
+      border-radius:16px;
+      background:linear-gradient(135deg,#eef2ff,#faf7ff);
+      border-left:5px solid var(--chem4);
+    }
+
+    .interactive-box strong{
+      color:var(--chem2);
+    }
+
+    .evidence-empty{
+      border:2px dashed #cbd3ef;
+      border-radius:18px;
+      padding:28px;
+      background:#fafbff;
+      text-align:center;
+      color:var(--gris);
+    }
+
+    .evidence-empty b{
+      color:var(--chem2);
+      display:block;
+      margin-bottom:7px;
+      font-size:1.05rem;
+    }
+
+    @media(max-width:760px){
+      .periodic-preview{grid-template-columns:repeat(2,1fr)}
+    }
+
+
+    /* Centro 8 — Pitágoras en nuestro territorio */
+    :root{
+      --pita:#ef8b2c;
+      --pita2:#a64b16;
+      --pita3:#fff3e6;
+      --pita4:#2f76b8;
+      --pita5:#f7c86f;
+    }
+
+    .nav-dropdown-menu .pita-menu{
+      background:linear-gradient(135deg,var(--pita2),var(--pita),var(--pita4));
+    }
+
+    .center-summary.pita .top{
+      background:linear-gradient(135deg,var(--pita2),var(--pita),var(--pita4));
+    }
+
+    .status.pita{
+      background:var(--pita3);
+      color:var(--pita2);
+    }
+
+    .center-cover.pita{
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(145deg,rgba(166,75,22,.94),rgba(239,139,44,.86),rgba(47,118,184,.82));
+    }
+
+    .center-cover.pita::after{
+      content:"a² + b² = c²";
+      position:absolute;
+      right:28px;
+      bottom:28px;
+      color:rgba(255,255,255,.18);
+      font-size:3rem;
+      font-weight:900;
+      transform:rotate(-7deg);
+      pointer-events:none;
+    }
+
+    .fact.pita{
+      border-color:var(--pita);
+    }
+
+    .pita-tabs .tab-btn.active,
+    .pita-tabs .tab-btn:hover{
+      background:var(--pita2);
+      border-color:var(--pita2);
+    }
+
+    .pita-route div{
+      background:var(--pita3);
+    }
+
+    .pita-route strong{
+      color:var(--pita2);
+    }
+
+    .pita-product{
+      border-left-color:var(--pita4);
+      background:#f4f8ff;
+    }
+
+    .formula-card{
+      margin:18px 0;
+      padding:22px;
+      border-radius:18px;
+      text-align:center;
+      background:linear-gradient(135deg,#fff8ef,#eef6ff);
+      border:1px solid #e3d9ca;
+    }
+
+    .formula-card .formula{
+      display:block;
+      font-size:2.4rem;
+      font-weight:900;
+      color:var(--pita2);
+      margin-bottom:8px;
+    }
+
+    .territory-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:12px;
+      margin:18px 0;
+    }
+
+    .territory-card{
+      background:#fff;
+      border:1px solid var(--linea);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 7px 18px rgba(60,60,60,.06);
+    }
+
+    .territory-card b{
+      display:block;
+      color:var(--pita2);
+      margin-bottom:6px;
+    }
+
+    .stem-box{
+      margin-top:18px;
+      padding:18px;
+      border-radius:16px;
+      background:linear-gradient(135deg,#fff7ec,#f3f8ff);
+      border-left:5px solid var(--pita4);
+    }
+
+    .stem-box strong{
+      color:var(--pita2);
+    }
+
+    .evidence-empty-pita{
+      border:2px dashed #e3bf99;
+      border-radius:18px;
+      padding:28px;
+      background:#fffaf4;
+      text-align:center;
+      color:var(--gris);
+    }
+
+    .evidence-empty-pita b{
+      color:var(--pita2);
+      display:block;
+      margin-bottom:7px;
+      font-size:1.05rem;
+    }
+
+    @media(max-width:900px){
+      .territory-grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media(max-width:620px){
+      .territory-grid{grid-template-columns:1fr}
+    }
+
+
+    /* Guardianes de Historias — libros digitales y códigos QR */
+    .guardian-digital-block{
+      margin-top:30px;
+      padding-top:22px;
+      border-top:1px solid var(--linea);
+    }
+
+    .guardian-digital-block h3{
+      margin-bottom:8px;
+    }
+
+    .guardian-digital-intro{
+      max-width:850px;
+      color:var(--gris);
+      margin-bottom:18px;
+    }
+
+    .digital-library-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+    }
+
+    .qr-evidence-card{
+      display:grid;
+      grid-template-columns:180px 1fr;
+      gap:20px;
+      align-items:center;
+      padding:20px;
+      border:1px solid var(--linea);
+      border-radius:20px;
+      background:linear-gradient(135deg,#ffffff,#f5fbf6);
+      box-shadow:0 10px 26px rgba(20,70,42,.08);
+    }
+
+    .qr-evidence-card img{
+      width:100%;
+      aspect-ratio:1;
+      object-fit:contain;
+      background:#fff;
+      padding:8px;
+      border-radius:14px;
+      border:1px solid #e4e9e5;
+    }
+
+    .qr-evidence-card small{
+      display:block;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-weight:800;
+      color:var(--verde);
+      margin-bottom:6px;
+    }
+
+    .qr-evidence-card h4{
+      margin:0 0 8px;
+      color:var(--verde-oscuro);
+      font-size:1.08rem;
+    }
+
+    .qr-evidence-card p{
+      margin:0 0 14px;
+      color:var(--gris);
+      font-size:.9rem;
+    }
+
+    .qr-link{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      text-decoration:none;
+      background:var(--verde);
+      color:white !important;
+      font-weight:800;
+      font-size:.85rem;
+    }
+
+    .qr-link:hover{
+      filter:brightness(.94);
+    }
+
+    .direct-link{
+      margin-top:10px;
+      font-size:.74rem;
+      color:var(--gris);
+      word-break:break-all;
+    }
+
+    @media(max-width:950px){
+      .digital-library-grid{grid-template-columns:1fr}
+    }
+
+    @media(max-width:620px){
+      .qr-evidence-card{
+        grid-template-columns:1fr;
+        text-align:center;
+      }
+      .qr-evidence-card img{
+        max-width:220px;
+        margin:auto;
+      }
+    }
+
+
+    /* Centro 9 — Aprendo, leo y me divierto: exploradores de palabras */
+    :root{
+      --pal:#e85b9d;
+      --pal2:#7f3aa6;
+      --pal3:#fff0f7;
+      --pal4:#f6c94c;
+      --pal5:#3d8f83;
+    }
+
+    .nav-dropdown-menu .palabras-menu{
+      background:linear-gradient(135deg,var(--pal2),var(--pal),var(--pal5));
+    }
+
+    .center-summary.palabras .top{
+      background:linear-gradient(135deg,var(--pal2),var(--pal),var(--pal5));
+    }
+
+    .status.palabras{
+      background:var(--pal3);
+      color:var(--pal2);
+    }
+
+    .center-cover.palabras{
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(145deg,rgba(127,58,166,.93),rgba(232,91,157,.86),rgba(61,143,131,.82));
+      isolation:isolate;
+    }
+
+    .center-cover.palabras::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:var(--palabras-hero-bg);
+      background-size:cover;
+      background-position:center;
+      filter:blur(9px);
+      transform:scale(1.08);
+      opacity:.52;
+      z-index:0;
+    }
+
+    .center-cover.palabras > *{
+      position:relative;
+      z-index:2;
+    }
+
+    .center-cover.palabras::after{
+      content:"A B C · leer · jugar · crear";
+      position:absolute;
+      right:18px;
+      bottom:25px;
+      color:rgba(255,255,255,.17);
+      font-size:2.15rem;
+      font-weight:900;
+      transform:rotate(-5deg);
+      pointer-events:none;
+      z-index:1;
+    }
+
+    .fact.palabras{
+      border-color:var(--pal);
+    }
+
+    .palabras-tabs .tab-btn.active,
+    .palabras-tabs .tab-btn:hover{
+      background:var(--pal2);
+      border-color:var(--pal2);
+    }
+
+    .palabras-route div{
+      background:var(--pal3);
+    }
+
+    .palabras-route strong{
+      color:var(--pal2);
+    }
+
+    .palabras-product{
+      border-left-color:var(--pal5);
+      background:#f2fbf9;
+    }
+
+    .word-chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:9px;
+      margin:16px 0;
+    }
+
+    .word-chip{
+      padding:9px 12px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid #ead6e4;
+      color:var(--pal2);
+      font-weight:800;
+      font-size:.83rem;
+    }
+
+    .dictionary-box{
+      margin-top:18px;
+      padding:18px;
+      border-radius:17px;
+      background:linear-gradient(135deg,#fff4fa,#eefaf7);
+      border-left:5px solid var(--pal5);
+    }
+
+    .dictionary-box strong{
+      color:var(--pal2);
+    }
+
+    .baseline-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+      margin-top:14px;
+    }
+
+    .baseline-grid div{
+      border:1px solid var(--linea);
+      border-radius:14px;
+      padding:14px;
+      background:#fff;
+    }
+
+    .baseline-grid b{
+      display:block;
+      color:var(--pal2);
+      margin-bottom:5px;
+    }
+
+    @media(max-width:620px){
+      .baseline-grid{grid-template-columns:1fr}
+    }
+
+
+    /* =========================================================
+       GALERÍAS TIPO LIBRO — TODOS LOS CENTROS DE INTERÉS
+       ========================================================= */
+    .gallery.photo-book{
+      display:block !important;
+      position:relative;
+      max-width:900px;
+      margin:22px auto 10px;
+      padding:22px 26px 18px;
+      border-radius:22px;
+      background:
+        linear-gradient(90deg,
+          #e9e0cf 0,
+          #f8f3e9 4%,
+          #fffdfa 49.2%,
+          #dfd5c4 50%,
+          #fffdfa 50.8%,
+          #f8f3e9 96%,
+          #e9e0cf 100%);
+      border:1px solid #ddd2bf;
+      box-shadow:
+        0 18px 45px rgba(52,44,32,.16),
+        inset 0 0 0 1px rgba(255,255,255,.7);
+      perspective:1400px;
+      overflow:hidden;
+    }
+
+    .gallery.photo-book::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:14px;
+      bottom:14px;
+      width:2px;
+      transform:translateX(-50%);
+      background:linear-gradient(to bottom,transparent,rgba(95,78,57,.18),transparent);
+      pointer-events:none;
+      z-index:4;
+    }
+
+    .gallery.photo-book .gallery-item{
+      display:none;
+      width:100%;
+      margin:0;
+      padding:12px;
+      border:0;
+      border-radius:16px;
+      background:#fff;
+      box-shadow:
+        0 8px 24px rgba(49,43,34,.13),
+        inset 0 0 0 1px #ece7de;
+      cursor:zoom-in;
+      transform-style:preserve-3d;
+      transform-origin:left center;
+      overflow:hidden;
+    }
+
+    .gallery.photo-book .gallery-item.book-active{
+      display:block;
+      animation:bookPageForward .48s cubic-bezier(.22,.61,.36,1);
+    }
+
+    .gallery.photo-book .gallery-item.book-active.book-backward{
+      animation:bookPageBackward .48s cubic-bezier(.22,.61,.36,1);
+    }
+
+    .gallery.photo-book .gallery-item img{
+      display:block;
+      width:100%;
+      height:min(62vh,590px) !important;
+      object-fit:contain !important;
+      border-radius:10px;
+      background:#f7f7f4;
+      transition:none !important;
+    }
+
+    .gallery.photo-book .gallery-item:hover img{
+      transform:none !important;
+    }
+
+    @keyframes bookPageForward{
+      0%{
+        opacity:.22;
+        transform:rotateY(-12deg) translateX(14px) scale(.985);
+        filter:brightness(.92);
+      }
+      100%{
+        opacity:1;
+        transform:rotateY(0) translateX(0) scale(1);
+        filter:brightness(1);
+      }
+    }
+
+    @keyframes bookPageBackward{
+      0%{
+        opacity:.22;
+        transform:rotateY(12deg) translateX(-14px) scale(.985);
+        filter:brightness(.92);
+      }
+      100%{
+        opacity:1;
+        transform:rotateY(0) translateX(0) scale(1);
+        filter:brightness(1);
+      }
+    }
+
+    .book-controls{
+      max-width:900px;
+      margin:12px auto 28px;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      gap:14px;
+      align-items:center;
+    }
+
+    .book-nav{
+      min-width:120px;
+      border:0;
+      border-radius:999px;
+      padding:11px 16px;
+      background:var(--verde);
+      color:#fff;
+      font-weight:850;
+      cursor:pointer;
+      box-shadow:0 6px 16px rgba(28,92,55,.16);
+      transition:transform .18s ease, opacity .18s ease, filter .18s ease;
+    }
+
+    .book-nav:hover:not(:disabled){
+      transform:translateY(-1px);
+      filter:brightness(.96);
+    }
+
+    .book-nav:disabled{
+      opacity:.36;
+      cursor:not-allowed;
+      box-shadow:none;
+    }
+
+    .book-page-indicator{
+      text-align:center;
+      font-size:.88rem;
+      color:var(--gris);
+      font-weight:750;
+    }
+
+    .book-page-indicator strong{
+      color:var(--verde-oscuro);
+    }
+
+    .book-hint{
+      max-width:900px;
+      margin:0 auto 8px;
+      text-align:center;
+      color:var(--gris);
+      font-size:.78rem;
+    }
+
+    @media(max-width:680px){
+      .gallery.photo-book{
+        padding:14px 12px 12px;
+        border-radius:17px;
+      }
+
+      .gallery.photo-book::before{
+        display:none;
+      }
+
+      .gallery.photo-book .gallery-item{
+        padding:8px;
+      }
+
+      .gallery.photo-book .gallery-item img{
+        height:min(60vh,520px) !important;
+      }
+
+      .book-controls{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+      }
+
+      .book-page-indicator{
+        grid-column:1 / -1;
+        grid-row:1;
+      }
+
+      .book-nav{
+        min-width:0;
+        width:100%;
+      }
+
+      .book-prev{grid-column:1;grid-row:2;}
+      .book-next{grid-column:2;grid-row:2;}
+    }
+
+
+    /* =========================================================
+       INSTITUCIÓN — LECTURA DE CONTEXTO
+       ========================================================= */
+    .nav-dropdown-menu.institution-menu{
+      width:290px;
+      max-height:none;
+    }
+
+    .nav-dropdown-menu .institution-item{
+      background:linear-gradient(135deg,var(--verde2),var(--verde));
+      color:white;
+      margin-bottom:0;
+    }
+
+    .nav-dropdown-menu .institution-item small{
+      color:rgba(255,255,255,.82);
+    }
+
+    .nav-dropdown-menu .institution-item .center-number{
+      background:rgba(255,255,255,.18);
+      color:white;
+    }
+
+    .institution-context{
+      background:
+        radial-gradient(circle at 90% 10%, rgba(22,140,71,.08), transparent 28%),
+        linear-gradient(180deg,#f7fbf8,#ffffff);
+    }
+
+    .context-hero{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:24px;
+      align-items:stretch;
+      margin-bottom:24px;
+    }
+
+    .context-main{
+      background:linear-gradient(145deg,var(--verde2),var(--verde));
+      color:white;
+      border-radius:26px;
+      padding:30px;
+      box-shadow:var(--shadow);
+    }
+
+    .context-main .kicker{
+      color:#d9f2e2;
+    }
+
+    .context-main h2{
+      color:white;
+      margin-bottom:12px;
+    }
+
+    .context-main p{
+      color:rgba(255,255,255,.92);
+      margin-bottom:0;
+    }
+
+    .context-side{
+      display:grid;
+      gap:12px;
+    }
+
+    .context-stat{
+      background:white;
+      border:1px solid var(--linea);
+      border-radius:18px;
+      padding:18px;
+      box-shadow:0 8px 20px rgba(19,77,43,.07);
+    }
+
+    .context-stat small{
+      display:block;
+      text-transform:uppercase;
+      letter-spacing:.07em;
+      font-weight:900;
+      color:var(--verde);
+      margin-bottom:5px;
+      font-size:.68rem;
+    }
+
+    .context-stat b{
+      display:block;
+      color:var(--verde2);
+      font-size:1.03rem;
+    }
+
+    .context-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+      margin-top:20px;
+    }
+
+    .context-card{
+      background:white;
+      border:1px solid var(--linea);
+      border-radius:18px;
+      padding:20px;
+      box-shadow:0 8px 22px rgba(19,77,43,.06);
+    }
+
+    .context-card h3{
+      margin-top:0;
+      margin-bottom:8px;
+      font-size:1.08rem;
+    }
+
+    .context-card p,
+    .context-card li{
+      color:var(--gris);
+      font-size:.91rem;
+    }
+
+    .context-card ul{
+      margin:10px 0 0;
+      padding-left:20px;
+    }
+
+    .findings-box{
+      margin-top:24px;
+      padding:24px;
+      border-radius:22px;
+      background:#eef8f1;
+      border:1px solid #d7eadc;
+    }
+
+    .findings-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .finding-item{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      background:white;
+      border-radius:14px;
+      padding:12px;
+      border:1px solid #dfeadf;
+    }
+
+    .finding-number{
+      flex:0 0 30px;
+      width:30px;
+      height:30px;
+      border-radius:9px;
+      display:grid;
+      place-items:center;
+      background:var(--verde);
+      color:white;
+      font-weight:900;
+      font-size:.72rem;
+    }
+
+    .finding-item b{
+      color:var(--verde2);
+      font-size:.9rem;
+    }
+
+    .finding-item span{
+      display:block;
+      color:var(--gris);
+      font-size:.8rem;
+      margin-top:2px;
+    }
+
+    .context-synthesis{
+      margin-top:24px;
+      padding:22px;
+      border-left:5px solid var(--amarillo);
+      border-radius:16px;
+      background:#fff9e8;
+      color:#5f5739;
+    }
+
+    .context-synthesis b{
+      color:var(--verde2);
+    }
+
+    @media(max-width:900px){
+      .context-hero{grid-template-columns:1fr}
+      .context-grid{grid-template-columns:1fr}
+    }
+
+    @media(max-width:620px){
+      .findings-grid{grid-template-columns:1fr}
+      .context-main{padding:22px}
+    }
+
+
+    /* Foto docente — Guardianes de Historias */
+    .teacher-profile{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .teacher-profile img{
+      width:62px;
+      height:62px;
+      flex:0 0 62px;
+      object-fit:cover;
+      object-position:center 22%;
+      border-radius:50%;
+      border:3px solid #fff;
+      box-shadow:0 4px 14px rgba(26,92,54,.18);
+      background:#fff;
+    }
+
+    .teacher-profile .teacher-copy{
+      min-width:0;
+    }
+
+    .teacher-profile .teacher-copy small{
+      margin-bottom:3px;
+    }
+
+    .teacher-profile .teacher-copy b{
+      display:block;
+      line-height:1.25;
+    }
+
+    @media(max-width:620px){
+      .teacher-profile img{
+        width:56px;
+        height:56px;
+        flex-basis:56px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="#inicio">
+    <img src="imagen_002.png" alt="Escudo I.E. Charco Trece">
+    <span><strong>I.E. Charco Trece</strong><small>Repositorio de Centros de Interés</small></span>
+  </a>
+
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <div class="nav-dropdown">
+      <button class="nav-dropbtn" type="button" aria-expanded="false">Centros de Interés ▾</button>
+      <div class="nav-dropdown-menu" role="menu">
+        <a class="active-center" href="#centro-1" role="menuitem">
+              <span class="center-number">01</span>
+              <span><strong>Guardianes de Historias</strong><small>Centro de Interés 1</small></span>
+            </a>
+<a class="active-center sports" href="#centro-2" role="menuitem">
+              <span class="center-number">02</span>
+              <span><strong>Semilleros Deportivos: Jugando Aprendo y Crezco</strong><small>Centro de Interés 2</small></span>
+            </a>
+<a class="active-center techno-menu" href="#centro-3" role="menuitem">
+              <span class="center-number">03</span>
+              <span><strong>Tecno-rural robótica</strong><small>Centro de Interés 3</small></span>
+            </a>
+<a class="active-center emotions-menu" href="#centro-4" role="menuitem">
+              <span class="center-number">04</span>
+              <span><strong>Acepto mis emociones para vivir en paz</strong><small>Centro de Interés 4</small></span>
+            </a>
+<a class="active-center eco-menu" href="#centro-5" role="menuitem">
+              <span class="center-number">05</span>
+              <span><strong>Reciclando con jabón</strong><small>Centro de Interés 5</small></span>
+            </a>
+<a class="active-center agro-menu" href="#centro-6" role="menuitem">
+              <span class="center-number">06</span>
+              <span><strong>Sembrando vida, conocimiento y territorio</strong><small>Centro de Interés 6</small></span>
+            </a>
+<a class="active-center chemistry-menu" href="#centro-7" role="menuitem">
+              <span class="center-number">07</span>
+              <span><strong>Chemistry in English</strong><small>Centro de Interés 7</small></span>
+            </a>
+<a class="active-center pita-menu" href="#centro-8" role="menuitem">
+              <span class="center-number">08</span>
+              <span><strong>Pitágoras en nuestro territorio</strong><small>Centro de Interés 8</small></span>
+            </a>
+<a class="active-center palabras-menu" href="#centro-9" role="menuitem">
+              <span class="center-number">09</span>
+              <span><strong>Exploradores de palabras</strong><small>Centro de Interés 9</small></span>
+            </a>
+<a class="" href="#centros" role="menuitem">
+              <span class="center-number">10</span>
+              <span><strong>Centro de Interés 10</strong><small>Por estructurar</small></span>
+            </a>
+<a class="" href="#centros" role="menuitem">
+              <span class="center-number">11</span>
+              <span><strong>Centro de Interés 11</strong><small>Por estructurar</small></span>
+            </a>
+<a class="" href="#centros" role="menuitem">
+              <span class="center-number">12</span>
+              <span><strong>Centro de Interés 12</strong><small>Por estructurar</small></span>
+            </a>
+<a class="" href="#centros" role="menuitem">
+              <span class="center-number">13</span>
+              <span><strong>Centro de Interés 13</strong><small>Por estructurar</small></span>
+            </a>
+<a class="" href="#centros" role="menuitem">
+              <span class="center-number">14</span>
+              <span><strong>Centro de Interés 14</strong><small>Por estructurar</small></span>
+            </a>
+<a class="" href="#centros" role="menuitem">
+              <span class="center-number">15</span>
+              <span><strong>Centro de Interés 15</strong><small>Por estructurar</small></span>
+            </a>
+      </div>
+    </div>
+    <a href="#talento">Talento Humano</a>
+    <a href="#insumos">Insumos</a>
+
+    <div class="nav-dropdown institution-dropdown">
+      <button class="nav-dropbtn" type="button" aria-expanded="false">Institución ▾</button>
+      <div class="nav-dropdown-menu institution-menu" role="menu">
+        <a class="institution-item" href="#lectura-contexto" role="menuitem">
+          <span class="center-number">01</span>
+          <span><strong>Lectura de contexto</strong><small>Contexto Institucional 2026</small></span>
+        </a>
+      </div>
+    </div>
+
+    <a href="#pta">PTA/FI 3.0</a>
+  </nav>
+
+  <div class="pta-mini">
+    <div class="pta-dot">PTA<br>FI 3.0</div>
+    <span>Programa de Tutorías para el Aprendizaje y la Formación Integral</span>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="hero-inner">
+    <div class="eyebrow">Formación integral · Territorio · Creatividad</div>
+    <h1>Centros de Interés</h1>
+    <p><b>Institución Educativa Internado Charco Trece.</b> Un repositorio para organizar, acompañar, documentar y visibilizar las experiencias de formación integral construidas por docentes y estudiantes.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#centros">Explorar Centros de Interés</a>
+      <a class="btn btn-outline" href="#talento">Ver talento humano</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="institution-context" id="lectura-contexto">
+  <div class="container">
+    <div class="context-hero">
+      <div class="context-main">
+        <div class="kicker">Institución · Ítem 01</div>
+        <h2>Lectura de Contexto Institucional 2026</h2>
+        <p>Documento de apoyo para la planeación pedagógica, las Comunidades de Aprendizaje (CDA) y la implementación de los Centros de Interés dentro del Plan de Formación Integral – PFI 2026.</p>
+      </div>
+
+      <div class="context-side">
+        <div class="context-stat">
+          <small>Territorio</small>
+          <b>Puerto Lleras – Meta · contexto predominantemente rural</b>
+        </div>
+        <div class="context-stat">
+          <small>Cobertura educativa</small>
+          <b>Preescolar, Básica Primaria, Básica Secundaria y Media</b>
+        </div>
+        <div class="context-stat">
+          <small>Sedes rurales integradas</small>
+          <b>Alto Cunumia, Brisas del Güejar, El Diamante, La Argentina y Nuestra Señora de la Paz</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="context-grid">
+      <article class="context-card">
+        <h3>🌿 Contexto territorial</h3>
+        <p>La ruralidad, la riqueza natural, las actividades agropecuarias y los fuertes vínculos comunitarios constituyen referentes fundamentales para contextualizar el currículo y convertir el territorio en escenario de aprendizaje.</p>
+      </article>
+
+      <article class="context-card">
+        <h3>👨‍👩‍👧‍👦 Contexto social, cultural y familiar</h3>
+        <p>Las familias se vinculan principalmente a actividades agrícolas, ganaderas y trabajos rurales e informales. Existen condiciones diferenciadas de acceso a conectividad, materiales y dispositivos, pero también un importante sentido de pertenencia y saberes locales que enriquecen los procesos educativos.</p>
+      </article>
+
+      <article class="context-card">
+        <h3>🎯 Estudiantes e intereses</h3>
+        <p>La institución atiende diversidad de ritmos, estilos y niveles de aprendizaje. La creación literaria, el arte, el deporte, el ambiente, las actividades agropecuarias, la tecnología, la investigación y la exploración del territorio presentan alto potencial para la formación integral.</p>
+      </article>
+
+      <article class="context-card">
+        <h3>🧩 Contexto pedagógico</h3>
+        <p>El PIER promueve metodologías de aprendizaje activo, investigación, ciencia y tecnología. Desde PTAFI 3.0 se proyecta fortalecer esta orientación mediante STEAM+, Aprendizaje Basado en Proyectos (ABP) y otras metodologías activas, sin asumir que estas estén formalmente incorporadas al PIER.</p>
+      </article>
+
+      <article class="context-card">
+        <h3>🤝 Convivencia y bienestar</h3>
+        <p>La formación integral demanda fortalecer reconocimiento de emociones, comunicación asertiva, empatía, resolución pacífica de conflictos, participación, trabajo colaborativo y cuidado del entorno, con oportunidades de articulación a Educación CRESE.</p>
+      </article>
+
+      <article class="context-card">
+        <h3>🏡 Escuela, familia y comunidad</h3>
+        <p>Los saberes agropecuarios, la memoria del territorio, las historias locales, la biodiversidad y las tradiciones pueden convertirse en recursos pedagógicos. La participación de familias, líderes y actores institucionales amplía las oportunidades de aprendizaje.</p>
+      </article>
+
+      <article class="context-card">
+        <h3>💻 Condiciones territoriales y tecnológicas</h3>
+        <p>Las estrategias deben combinar recursos tecnológicos y no tecnológicos debido a las diferencias de conectividad entre sedes. Para esta actualización se reportan kits STEAM, motores, sensores, tarjetas Arduino y micro:bit e impresora 3D, cuya ubicación, cantidad, estado y acceso deben verificarse mediante inventario institucional.</p>
+      </article>
+
+      <article class="context-card">
+        <h3>📚 Articulación curricular</h3>
+        <p>Uno de los principales retos es evitar que los Centros de Interés funcionen como actividades aisladas. Su consolidación requiere articulación con planes de aula, planes de área, proyectos transversales y el PIER, acompañada de evaluación formativa y sistematización de experiencias.</p>
+      </article>
+    </div>
+
+    <div class="findings-box">
+      <div class="kicker">Principales hallazgos</div>
+      <h3>Diez claves de la lectura de contexto</h3>
+
+      <div class="findings-grid">
+        <div class="finding-item"><span class="finding-number">1</span><div><b>Ruralidad y currículo</b><span>El territorio debe asumirse como oportunidad para contextualizar el currículo.</span></div></div>
+        <div class="finding-item"><span class="finding-number">2</span><div><b>Diversidad de aprendizajes</b><span>Existen ritmos, niveles y condiciones diferentes entre sedes y estudiantes.</span></div></div>
+        <div class="finding-item"><span class="finding-number">3</span><div><b>Aprendizajes fundamentales</b><span>Se requiere fortalecer lectura, escritura, comunicación, pensamiento lógico y habilidades socioemocionales.</span></div></div>
+        <div class="finding-item"><span class="finding-number">4</span><div><b>Condiciones de acceso</b><span>La dispersión geográfica y la conectividad generan condiciones diferenciadas.</span></div></div>
+        <div class="finding-item"><span class="finding-number">5</span><div><b>Fortaleza docente</b><span>El compromiso y conocimiento territorial de los docentes favorecen la innovación pedagógica.</span></div></div>
+        <div class="finding-item"><span class="finding-number">6</span><div><b>Metodologías activas</b><span>Existe oportunidad para fortalecer ABP, trabajo colaborativo e investigación escolar.</span></div></div>
+        <div class="finding-item"><span class="finding-number">7</span><div><b>Saberes del territorio</b><span>Agricultura, biodiversidad, historias, arte, deporte y tecnología pueden articular la formación integral.</span></div></div>
+        <div class="finding-item"><span class="finding-number">8</span><div><b>Centros de Interés</b><span>Deben avanzar en organización, documentación, implementación, seguimiento y articulación curricular.</span></div></div>
+        <div class="finding-item"><span class="finding-number">9</span><div><b>Familias y comunidad</b><span>La participación puede fortalecerse vinculando saberes locales con aprendizajes escolares.</span></div></div>
+        <div class="finding-item"><span class="finding-number">10</span><div><b>Comunidades de Aprendizaje</b><span>Las CDA son espacios estratégicos para analizar prácticas, compartir experiencias y construir mejoras.</span></div></div>
+      </div>
+    </div>
+
+    <div class="context-synthesis">
+      <b>Síntesis institucional:</b> la I.E. Charco Trece desarrolla su labor en un territorio rural diverso que presenta desafíos de dispersión, conectividad, recursos y diversidad de aprendizajes, pero también una importante riqueza cultural, ambiental, comunitaria y productiva. El reto es lograr que la Formación Integral, las CDA, la educación CRESE y los Centros de Interés se articulen al currículo y generen aprendizajes significativos con participación de docentes, estudiantes, familias y comunidad.
+    </div>
+  </div>
+</section>
+
+<section class="structure" id="estructura">
+  <div class="container">
+    <div class="kicker">Estructura común</div>
+    <h2>Un mismo espacio para documentar cada Centro de Interés</h2>
+    <p class="intro">Cada proyecto se organiza con los mismos componentes para facilitar su lectura, seguimiento, retroalimentación y consolidación.</p>
+    <div class="structure-grid">
+      <div class="structure-item"><b>1. Identificación</b><span>Título del proyecto y entidad o docente responsable.</span></div>
+      <div class="structure-item"><b>2. Justificación</b><span>Necesidad de implementación y relación con la formación integral.</span></div>
+      <div class="structure-item"><b>3. Objetivos</b><span>Objetivo principal y objetivos específicos.</span></div>
+      <div class="structure-item"><b>4. Población objetivo</b><span>Grados, edades y actores vinculados.</span></div>
+      <div class="structure-item"><b>5. Metodología</b><span>Estrategias pedagógicas, actividades y recursos didácticos.</span></div>
+      <div class="structure-item"><b>6. Cronograma</b><span>Tiempo de implementación y momentos del proceso.</span></div>
+      <div class="structure-item"><b>7. Recursos</b><span>Recursos humanos, materiales y esquema operativo.</span></div>
+      <div class="structure-item"><b>8. Resultados y evaluación</b><span>Resultados esperados, escenarios, criterios, instrumentos y evidencias.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="centers-overview" id="centros">
+  <div class="container">
+    <div class="kicker">Centros activos documentados</div>
+    <h2>Experiencias que ya cuentan con insumos</h2>
+    <p class="intro">A medida que los docentes consoliden sus propuestas, los demás espacios del menú se activarán con su nombre propio, ficha, evidencias y productos.</p>
+    <div class="grid-3">
+      <article class="center-summary">
+        <div class="top"><small>Centro de Interés 1</small><h3>Guardianes de Historias</h3><p>Lectura, escritura, oralidad, creatividad y territorio.</p></div>
+        <div class="body"><span class="status">En implementación</span><p><b>Docente líder:</b> Yenny Sirley Castillo Rivas<br><b>Grados:</b> 3.º, 4.º y 5.º</p><a class="btn btn-primary" href="#centro-1">Abrir proyecto</a></div>
+      </article>
+
+      <article class="center-summary sport">
+        <div class="top"><small>Centro de Interés 2</small><h3>Semilleros Deportivos: Jugando Aprendo y Crezco</h3><p>Movimiento, convivencia, vida saludable y contexto rural.</p></div>
+        <div class="body"><span class="status orange">En implementación</span><p><b>Sede:</b> Nuestra Señora de la Paz<br><b>Población:</b> Preescolar a 5.º</p><a class="btn btn-primary" href="#centro-2">Abrir proyecto</a></div>
+      </article>
+
+      <article class="center-summary tech">
+        <div class="top"><small>Centro de Interés 3</small><h3>Tecno-rural robótica</h3><p>Robótica, programación, STEM, diseño 3D e innovación para el contexto rural.</p></div>
+        <div class="body"><span class="status blue">En implementación</span><p><b>Docente líder:</b> Yeimmy Jacaira Monroy Clavijo<br><b>Enfoque:</b> Soluciones tecnológicas para el territorio</p><a class="btn btn-primary" href="#centro-3">Abrir proyecto</a></div>
+      </article>
+
+      <article class="center-summary emo">
+        <div class="top"><small>Centro de Interés 4</small><h3>Acepto mis emociones para vivir en paz</h3><p>Bienestar socioemocional, empatía, autorregulación, lectura y convivencia pacífica.</p></div>
+        <div class="body"><span class="status pink">En implementación</span><p><b>Docente orientadora:</b> Sindy Johana Amezquita Cortes<br><b>Población:</b> Transición, Primaria y Secundaria</p><a class="btn btn-primary" href="#centro-4">Abrir proyecto</a></div>
+      </article>
+
+      <article class="center-summary eco">
+        <div class="top">
+          <small>Centro de Interés 5</small>
+          <h3>Reciclando con jabón</h3>
+          <p>Ambiente, ciencia, matemáticas, creatividad y emprendimiento desde la ruralidad.</p>
+        </div>
+        <div class="body">
+          <span class="status mint">En implementación</span>
+          <p><b>Docente líder:</b> Mayerly Katerin Clavijo<br><b>Sede:</b> El Diamante · Preescolar y Básica Primaria</p>
+          <a class="btn btn-primary" href="#centro-5">Abrir proyecto</a>
+        </div>
+      </article>
+
+      <article class="center-summary agro"><div class="top"><small>Centro de Interés 6</small><h3>Sembrando vida, conocimiento y territorio</h3><p>Principios agropecuarios, huerta escolar, compostaje, lombricultivo y aprendizaje desde el territorio.</p></div><div class="body"><span class="status agro">En implementación</span><p><b>Docente líder:</b> Diana Patricia Matiz Cano<br><b>Población:</b> Básica Secundaria y Media</p><a class="btn btn-primary" href="#centro-6">Abrir proyecto</a></div></article>
+
+      <article class="center-summary chemistry">
+        <div class="top">
+          <small>Centro de Interés 7</small>
+          <h3>Chemistry in English</h3>
+          <p>Química + inglés mediante investigación, vocabulario científico y una tabla periódica bilingüe.</p>
+        </div>
+        <div class="body">
+          <span class="status chemistry">En implementación</span>
+          <p><b>Docentes líderes:</b> David Osorio y Raúl Torres<br><b>Sede:</b> Principal</p>
+          <a class="btn btn-primary" href="#centro-7">Abrir proyecto</a>
+        </div>
+      </article>
+
+      <article class="center-summary pita">
+        <div class="top">
+          <small>Centro de Interés 8</small>
+          <h3>Pitágoras en nuestro territorio</h3>
+          <p>Matemáticas aplicadas para medir, diseñar y resolver problemas reales de Charco Trece.</p>
+        </div>
+        <div class="body">
+          <span class="status pita">En implementación</span>
+          <p><b>Docente líder:</b> Rosa Elia Ortiz Murcia<br><b>Área:</b> Matemáticas · Sede Internado</p>
+          <a class="btn btn-primary" href="#centro-8">Abrir proyecto</a>
+        </div>
+      </article>
+
+      <article class="center-summary palabras">
+        <div class="top">
+          <small>Centro de Interés 9</small>
+          <h3>Exploradores de palabras</h3>
+          <p>Lectura, escritura, ortografía, vocabulario y aprendizaje mediante el juego.</p>
+        </div>
+        <div class="body">
+          <span class="status palabras">En implementación</span>
+          <p><b>Docente líder:</b> Marisol Devia Castro<br><b>Población:</b> Preescolar, primero y segundo</p>
+          <a class="btn btn-primary" href="#centro-9">Abrir proyecto</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="center-detail" id="centro-1">
+  <div class="container">
+    <div class="kicker">Centro de Interés 1 · Versión consolidada</div>
+    <h2>Guardianes de Historias</h2>
+    <div class="center-hero">
+      <div class="center-cover">
+        <span class="ci-number">Creación literaria + tecnología</span>
+        <h3>Guardianes de Historias</h3>
+        <p>Historias creadas, ilustradas, narradas y compartidas por estudiantes, conservando su voz y su identidad.</p>
+      </div>
+      <div class="panel">
+        <h3>Ficha rápida</h3>
+        <div class="facts">
+          <div class="fact teacher-profile">
+            <img src="imagen_003.jpg" alt="Fotografía de la docente Yenny Sirley Castillo Rivas">
+            <div class="teacher-copy">
+              <small>Docente líder</small>
+              <b>Yenny Sirley Castillo Rivas</b>
+            </div>
+          </div>
+          <div class="fact"><small>Sede</small><b>Principal Internado Charco Trece</b></div>
+          <div class="fact"><small>Población</small><b>3.º, 4.º y 5.º · 8 a 12 años</b></div>
+          <div class="fact"><small>Acompañamiento</small><b>PTA/FI 3.0</b></div>
+        </div>
+        <div class="product-card">
+          <b>Producto articulador propuesto</b><br>
+          <strong>Colección Guardianes de Historias – Voces y relatos de Charco Trece</strong>
+          <p>Libro físico y digital, cuentos individuales, audiocuentos, animaciones sencillas, códigos QR, galería web, exposición final y memoria audiovisual.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs" data-tabs="g">
+      <button class="tab-btn active" data-target="g-descripcion">Descripción</button>
+      <button class="tab-btn" data-target="g-objetivos">Objetivos</button>
+      <button class="tab-btn" data-target="g-metodo">Metodología</button>
+      <button class="tab-btn" data-target="g-crono">Cronograma</button>
+      <button class="tab-btn" data-target="g-recursos">Recursos</button>
+      <button class="tab-btn" data-target="g-resultados">Resultados</button>
+      <button class="tab-btn" data-target="g-evaluacion">Evaluación</button>
+      <button class="tab-btn" data-target="g-evidencias">Evidencias</button>
+    </div>
+
+    <div class="tab-panel active" id="g-descripcion">
+      <h3>Justificación consolidada</h3>
+      <p>El Centro de Interés fortalece las competencias comunicativas de los estudiantes a través de la lectura, la escritura, la oralidad y la creación de cuentos. El proceso parte de experiencias, relatos familiares, leyendas y elementos del entorno para que los niños construyan una voz narrativa propia, reconozcan su territorio y conviertan sus producciones en obras que puedan ser compartidas.</p>
+      <p>La propuesta ya cuenta con productos y evidencias concretas —portadas, escritos, ilustraciones y jornadas de lectura—, por lo que el siguiente paso es organizar el proceso como una colección física y digital sostenible.</p>
+    </div>
+
+    <div class="tab-panel" id="g-objetivos">
+      <h3>Objetivo general fortalecido</h3>
+      <p><b>Fortalecer las competencias comunicativas, creativas y digitales de los estudiantes de 3.º, 4.º y 5.º mediante la creación, ilustración, narración, revisión, digitalización y socialización de cuentos inspirados en sus experiencias, familias y territorio.</b></p>
+      <h3>Objetivos específicos</h3>
+      <ul>
+        <li>Fortalecer comprensión lectora, escritura creativa y expresión oral.</li>
+        <li>Enriquecer el vocabulario y desarrollar hábitos de producción textual.</li>
+        <li>Recuperar historias, leyendas, personajes y experiencias del entorno familiar y comunitario.</li>
+        <li>Conservar la voz, la escritura, los dibujos y el estilo personal de cada estudiante.</li>
+        <li>Transformar las producciones físicas en recursos digitales mediante narración, animación y códigos QR.</li>
+        <li>Socializar las producciones en espacios escolares, comunitarios y digitales.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="g-metodo">
+      <h3>Ruta pedagógica consolidada</h3>
+      <div class="route">
+        <div><strong>1. Escuchar y explorar</strong>Entrevistas y relatos de familia y comunidad.</div>
+        <div><strong>2. Imaginar y planear</strong>Personajes, escenarios, conflictos y desenlaces.</div>
+        <div><strong>3. Escribir</strong>Primer borrador y producción textual.</div>
+        <div><strong>4. Revisar y mejorar</strong>Acompañamiento docente y revisión entre pares.</div>
+        <div><strong>5. Ilustrar</strong>Portadas y dibujos originales.</div>
+        <div><strong>6. Narrar</strong>Lectura expresiva y grabación de voces.</div>
+        <div><strong>7. Digitalizar y animar</strong>Conservación digital de textos e ilustraciones.</div>
+        <div><strong>8. Publicar y compartir</strong>Libro, QR, página web y exposiciones.</div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="g-crono">
+      <h3>Cronograma registrado en la ficha</h3>
+      <ul>
+        <li><b>02–13 de marzo:</b> Exploración.</li>
+        <li><b>16 de marzo–17 de abril:</b> Ortografía y gramática.</li>
+        <li><b>20 de abril–19 de junio:</b> Voces que vuelan.</li>
+        <li><b>14 de julio–30 de octubre:</b> Creando historias.</li>
+        <li><b>14 de septiembre–16 de noviembre:</b> Mi libro digital.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="g-recursos">
+      <h3>Recursos registrados</h3>
+      <p>Pastas para folder, hojas cuadriculadas, lápices, colores, micrófono, bafle pequeño, papel Contac transparente y colecciones de cuentos infantiles.</p>
+      <p>Para la fase digital se pueden incorporar dispositivos disponibles, grabación de audio, digitalización de ilustraciones y enlaces mediante códigos QR.</p>
+    </div>
+
+    <div class="tab-panel" id="g-resultados">
+      <h3>Resultados observables propuestos</h3>
+      <ul>
+        <li>Cada estudiante planifica, escribe, revisa e ilustra al menos un cuento completo.</li>
+        <li>Los cuentos incorporan personajes, escenario, inicio, situación problemática y desenlace.</li>
+        <li>Se evidencia mejora progresiva en coherencia, ortografía y uso de conectores.</li>
+        <li>Cada estudiante participa en la lectura o grabación de su producción.</li>
+        <li>Se consolida una colección física y digital de obras estudiantiles.</li>
+        <li>Las familias aportan relatos, memorias o leyendas de la comunidad.</li>
+        <li>Los productos se socializan mediante muestra escolar, QR y página institucional.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="g-evaluacion">
+      <h3>Evaluación formativa sugerida</h3>
+      <ul>
+        <li>Portafolio individual.</li>
+        <li>Lista de cotejo para estructura narrativa.</li>
+        <li>Rúbrica para escritura, creatividad, ilustración y oralidad.</li>
+        <li>Autoevaluación del estudiante como autor.</li>
+        <li>Coevaluación respetuosa entre compañeros.</li>
+        <li>Registro fotográfico y audiovisual.</li>
+        <li>Comparación entre primer borrador y versión final.</li>
+        <li>Valoración del producto físico y digital.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="g-evidencias">
+      <h3>Galería del proceso</h3>
+      <p>Las evidencias muestran lectura al aire libre, elaboración de portadas e ilustraciones y socialización de producciones.</p>
+      <div class="gallery"><button class="gallery-item" type="button" onclick="openLightbox('g1')">
+             <img id="g1" src="imagen_004.jpg" alt="Evidencia del Centro de Interés">
+           </button>
+<button class="gallery-item" type="button" onclick="openLightbox('g2')">
+             <img id="g2" src="imagen_005.jpg" alt="Evidencia del Centro de Interés">
+           </button>
+<button class="gallery-item" type="button" onclick="openLightbox('g3')">
+             <img id="g3" src="imagen_006.jpg" alt="Evidencia del Centro de Interés">
+           </button>
+<button class="gallery-item" type="button" onclick="openLightbox('g4')">
+             <img id="g4" src="imagen_007.jpg" alt="Evidencia del Centro de Interés">
+           </button></div>
+    
+      <div class="guardian-digital-block">
+        <h3>Libros digitales y códigos QR</h3>
+        <p class="guardian-digital-intro">
+          Como parte de la colección digital de <b>Guardianes de Historias</b>, se incorporan accesos directos al libro publicado en Heyzine. Los estudiantes, docentes, familias y visitantes pueden abrir el recurso desde el botón o escanear el código QR.
+        </p>
+
+        <div class="digital-library-grid">
+          <article class="qr-evidence-card">
+            <img src="imagen_008.png" alt="Código QR de Guardianes de Historias - acceso 1">
+            <div>
+              <small>Publicación digital 1</small>
+              <h4>Guardianes de Historias · Libro digital</h4>
+              <p>Escanea el código QR o abre directamente la publicación interactiva.</p>
+              <a class="qr-link" href="https://heyzine.com/flip-book/796aeedff0.html" target="_blank" rel="noopener noreferrer">📖 Abrir libro digital</a>
+              <div class="direct-link">https://heyzine.com/flip-book/796aeedff0.html</div>
+            </div>
+          </article>
+
+          <article class="qr-evidence-card">
+            <img src="imagen_008.png" alt="Código QR de Guardianes de Historias - acceso 2">
+            <div>
+              <small>Publicación digital 2</small>
+              <h4>Guardianes de Historias · Acceso QR</h4>
+              <p>Segundo acceso disponible para consultar la publicación digital del Centro de Interés.</p>
+              <a class="qr-link" href="https://heyzine.com/flip-book/796aeedff0.html" target="_blank" rel="noopener noreferrer">📖 Abrir libro digital</a>
+              <div class="direct-link">https://heyzine.com/flip-book/796aeedff0.html</div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+    </div></div>
+</section>
+
+<section class="center-detail alt" id="centro-2">
+  <div class="container">
+    <div class="kicker" style="color:#b96016">Centro de Interés 2 · Versión consolidada</div>
+    <h2>Semilleros Deportivos: Jugando Aprendo y Crezco</h2>
+    <div class="center-hero">
+      <div class="center-cover sport">
+        <span class="ci-number">Educación física · recreación · vida saludable</span>
+        <h3>Jugando Aprendo y Crezco</h3>
+        <p>Aprender a través del movimiento, el juego, la cooperación y el aprovechamiento del contexto rural.</p>
+      </div>
+      <div class="panel">
+        <h3>Ficha rápida</h3>
+        <div class="facts">
+          <div class="fact orange"><small>Sede</small><b>Nuestra Señora de la Paz</b></div>
+          <div class="fact orange"><small>Docente de la sede</small><b>Anderson Olmos Palma</b></div>
+          <div class="fact orange"><small>Población</small><b>Preescolar a 5.º</b></div>
+          <div class="fact orange"><small>Enfoque</small><b>Movimiento, convivencia y vida saludable</b></div>
+        </div>
+        <div class="product-card">
+          <b>Posibilidad de producto para fortalecer el Centro</b><br>
+          <strong>Kit de Juegos y Retos de Nuestra Señora de la Paz</strong>
+          <p>Una opción para que los estudiantes investiguen, adapten o creen juegos, construyan implementos con materiales disponibles, definan reglas y elaboren una pequeña cartilla. El producto debe concertarse con docente y estudiantes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs sport-tabs" data-tabs="s">
+      <button class="tab-btn active" data-target="s-descripcion">Descripción</button>
+      <button class="tab-btn" data-target="s-objetivos">Objetivos</button>
+      <button class="tab-btn" data-target="s-metodo">Metodología</button>
+      <button class="tab-btn" data-target="s-crono">Cronograma</button>
+      <button class="tab-btn" data-target="s-recursos">Recursos</button>
+      <button class="tab-btn" data-target="s-resultados">Resultados</button>
+      <button class="tab-btn" data-target="s-evaluacion">Evaluación</button>
+      <button class="tab-btn" data-target="s-evidencias">Evidencias</button>
+    </div>
+
+    <div class="tab-panel active" id="s-descripcion">
+      <h3>Justificación</h3>
+      <p>La propuesta surge como una estrategia pedagógica de Educación Física, Recreación y Vida Saludable para fortalecer el desarrollo integral de estudiantes de Preescolar a Quinto, atendiendo las características del contexto rural. Integra habilidades motrices y capacidades físicas con convivencia, cooperación, autoestima, disciplina, respeto por las normas y aprovechamiento saludable del tiempo libre.</p>
+    </div>
+
+    <div class="tab-panel" id="s-objetivos">
+      <h3>Objetivo principal</h3>
+      <p><b>Promover el desarrollo integral de los estudiantes de la Sede Educativa Nuestra Señora de la Paz mediante actividades físicas, recreativas y deportivas que fortalezcan las habilidades motrices, las capacidades físicas, la convivencia, el trabajo en equipo y los hábitos de vida saludable, aprovechando los recursos y espacios disponibles en el contexto rural.</b></p>
+      <h3>Objetivos específicos</h3>
+      <ul>
+        <li>Fortalecer desplazamiento, equilibrio, coordinación, saltos, lanzamientos, recepción y manipulación.</li>
+        <li>Desarrollar resistencia, fuerza, flexibilidad, velocidad y coordinación según la edad.</li>
+        <li>Promover juegos recreativos, tradicionales y predeportivos.</li>
+        <li>Fortalecer respeto, cooperación, solidaridad, responsabilidad y cumplimiento de normas.</li>
+        <li>Fomentar actividad física, recreación, hidratación, cuidado corporal y buen uso del tiempo libre.</li>
+        <li>Aprovechar el entorno rural como escenario pedagógico seguro y significativo.</li>
+        <li>Favorecer inclusión y participación respetando ritmos, capacidades e intereses.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="s-metodo">
+      <h3>Metodología</h3>
+      <p>Activa, participativa, lúdica, inclusiva y experiencial. El estudiante aprende mediante movimiento, juego, exploración e interacción.</p>
+      <div class="route">
+        <div><strong>Juegos motores</strong>Correr, saltar, lanzar, atrapar, equilibrarse y superar retos.</div>
+        <div><strong>Juegos tradicionales</strong>Recuperación de prácticas recreativas de la región y del país.</div>
+        <div><strong>Circuitos motrices</strong>Estaciones de coordinación, equilibrio, desplazamiento y lanzamientos.</div>
+        <div><strong>Juegos predeportivos</strong>Actividades adaptadas de fútbol, baloncesto, voleibol y otros deportes.</div>
+        <div><strong>Recreación grupal</strong>Integración, comunicación, cooperación y respeto.</div>
+        <div><strong>Entorno rural</strong>Desplazamientos, orientación, caminatas y exploración motriz.</div>
+        <div><strong>Trabajo cooperativo</strong>Equipos, responsabilidades y valoración de aportes.</div>
+        <div><strong>Adaptaciones</strong>Ajustes en duración, dificultad, distancia, materiales y reglas.</div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="s-crono">
+      <h3>Cronograma por periodos</h3>
+      <ul>
+        <li><b>Primer periodo:</b> diagnóstico de habilidades motrices; juegos motores y coordinación.</li>
+        <li><b>Segundo periodo:</b> juegos tradicionales; circuitos de habilidades físicas.</li>
+        <li><b>Tercer periodo:</b> juegos predeportivos; actividades recreativas y cooperativas.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="s-recursos">
+      <h3>Recursos humanos</h3>
+      <p>Docente responsable, estudiantes de Preescolar a Quinto, familias cuando se requiera y comunidad educativa.</p>
+      <h3>Recursos físicos y materiales</h3>
+      <p>Balones, conos, cuerdas, aros, bastones, colchonetas cuando estén disponibles, pelotas, botellas reutilizables, tizas, cintas de demarcación, silbato, material reciclable y espacios abiertos de la sede.</p>
+    </div>
+
+    <div class="tab-panel" id="s-resultados">
+      <h3>Resultados esperados</h3>
+      <ul>
+        <li>Mejorar progresivamente las habilidades motrices básicas.</li>
+        <li>Fortalecer capacidades físicas según edad y posibilidades individuales.</li>
+        <li>Incrementar participación en actividad física y recreativa.</li>
+        <li>Favorecer hábitos de vida activa y saludable.</li>
+        <li>Mejorar convivencia, respeto por las normas y relaciones interpersonales.</li>
+        <li>Promover trabajo cooperativo, solidaridad, autoestima y confianza.</li>
+        <li>Recuperar y valorar juegos tradicionales y prácticas recreativas.</li>
+        <li>Aprovechar pedagógicamente espacios y recursos del contexto rural.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="s-evaluacion">
+      <h3>Evaluación</h3>
+      <p>Continua, formativa, participativa y cualitativa, considerando el progreso individual y las capacidades de acuerdo con la edad.</p>
+      <ul>
+        <li>Participación e interés.</li>
+        <li>Desarrollo de habilidades motrices y capacidades físicas.</li>
+        <li>Trabajo en equipo y convivencia.</li>
+        <li>Respeto por normas, compañeros y materiales.</li>
+        <li>Actitud, esfuerzo, responsabilidad y hábitos saludables.</li>
+      </ul>
+      <p><b>Instrumentos:</b> observación directa, listas de cotejo, registros anecdóticos, autoevaluación y evidencias fotográficas. Niveles: Logrado, En proceso y Requiere fortalecimiento.</p>
+    </div>
+
+    <div class="tab-panel" id="s-evidencias">
+      <h3>Galería del proceso</h3>
+      <p>Las evidencias muestran actividades de movilidad, flexibilidad, coordinación y trabajo grupal en la cancha de la sede.</p>
+      <div class="gallery"><button class="gallery-item" type="button" onclick="openLightbox('s1')">
+             <img id="s1" src="imagen_009.jpg" alt="Evidencia del Centro de Interés">
+           </button>
+<button class="gallery-item" type="button" onclick="openLightbox('s2')">
+             <img id="s2" src="imagen_010.jpg" alt="Evidencia del Centro de Interés">
+           </button>
+<button class="gallery-item" type="button" onclick="openLightbox('s3')">
+             <img id="s3" src="imagen_011.jpg" alt="Evidencia del Centro de Interés">
+           </button>
+<button class="gallery-item" type="button" onclick="openLightbox('s4')">
+             <img id="s4" src="imagen_012.jpg" alt="Evidencia del Centro de Interés">
+           </button></div>
+    </div></div>
+</section>
+
+
+<section class="center-detail" id="centro-3">
+  <div class="container">
+    <div class="kicker" style="color:var(--tech)">Centro de Interés 3 · Proyecto consolidado</div>
+    <h2>Tecno-rural robótica</h2>
+
+    <div class="center-hero">
+      <div class="center-cover tech" style="background-image:
+        linear-gradient(145deg,rgba(7,80,102,.90),rgba(15,119,144,.72)),
+        url('imagen_013.jpg');
+        background-size:cover;background-position:center;">
+        <span class="ci-number">Robótica · programación · STEM · diseño 3D</span>
+        <h3>Tecno-rural robótica</h3>
+        <p>Del uso de la tecnología al diseño de soluciones creadas por estudiantes para comprender y transformar necesidades de su entorno rural.</p>
+      </div>
+
+      <div class="panel">
+        <h3>Ficha rápida</h3>
+        <div class="facts">
+          <div class="fact blue"><small>Docente líder</small><b>Yeimmy Jacaira Monroy Clavijo</b></div>
+          <div class="fact blue"><small>Entidad responsable</small><b>Institución Educativa Charco Trece</b></div>
+          <div class="fact blue"><small>Metodología</small><b>ABP + STEM + retos tecnológicos</b></div>
+          <div class="fact blue"><small>Duración propuesta</small><b>10 semanas</b></div>
+        </div>
+        <div class="product-card tech-product">
+          <b>Producto articulador propuesto</b><br>
+          <strong>Tecno-rural: soluciones creadas para nuestro territorio</strong>
+          <p>Cada equipo puede consolidar un prototipo funcional que articule robótica, programación, sensores, diseño e impresión 3D y una problemática del contexto rural, acompañado de una memoria digital mediante código QR.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs tech-tabs" data-tabs="t">
+      <button class="tab-btn active" data-target="t-descripcion">Descripción</button>
+      <button class="tab-btn" data-target="t-objetivos">Objetivos</button>
+      <button class="tab-btn" data-target="t-metodo">Metodología</button>
+      <button class="tab-btn" data-target="t-crono">Cronograma</button>
+      <button class="tab-btn" data-target="t-recursos">Recursos</button>
+      <button class="tab-btn" data-target="t-resultados">Resultados</button>
+      <button class="tab-btn" data-target="t-evaluacion">Evaluación</button>
+      <button class="tab-btn" data-target="t-evidencias">Evidencias</button>
+    </div>
+
+    <div class="tab-panel active" id="t-descripcion">
+      <h3>Justificación</h3>
+      <p>El proyecto busca disminuir brechas de acceso y uso de herramientas tecnológicas en contextos rurales y orientar el aprendizaje hacia la aplicación de la tecnología en procesos agropecuarios locales. La propuesta transforma el aula en un laboratorio creativo para que los estudiantes dejen de ser únicamente usuarios de tecnología y se conviertan en diseñadores de soluciones adaptadas a su realidad.</p>
+      <p>La conexión entre educación rural, innovación y desarrollo sostenible permite que la robótica y la programación adquieran sentido cuando se relacionan con necesidades concretas del territorio.</p>
+    </div>
+
+    <div class="tab-panel" id="t-objetivos">
+      <h3>Objetivo principal</h3>
+      <p><b>Implementar un Centro de Interés que integre robótica básica, programación y TIC con una proyección hacia el sector agropecuario, promoviendo competencias clave y habilidades investigativas en estudiantes de una institución educativa rural.</b></p>
+      <h3>Objetivos específicos</h3>
+      <ul>
+        <li>Desarrollar competencias técnicas mediante kits de robótica y programación visual.</li>
+        <li>Fortalecer pensamiento lógico, resolución de problemas, trabajo en equipo, curiosidad y creatividad.</li>
+        <li>Vincular el aprendizaje tecnológico con el entorno productivo local.</li>
+        <li>Identificar necesidades agropecuarias y diseñar soluciones tecnológicas simples y aplicables.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="t-metodo">
+      <h3>Metodología de la propuesta</h3>
+      <p>La propuesta se fundamenta en <b>Aprendizaje Basado en Proyectos (ABP)</b>, enfoque <b>STEM</b> y talleres prácticos con retos tecnológicos. Los estudiantes exploran, experimentan, se equivocan, trabajan colaborativamente y resuelven problemas reales.</p>
+      <h3>Ruta enriquecida con diseño e impresión 3D</h3>
+      <div class="route tech-route">
+        <div><strong>1. Observar</strong>Recorrer el territorio y reconocer situaciones del contexto.</div>
+        <div><strong>2. Identificar</strong>Seleccionar una necesidad o problemática rural.</div>
+        <div><strong>3. Investigar</strong>Comprender causas, condiciones y posibles respuestas.</div>
+        <div><strong>4. Imaginar</strong>Proponer diferentes alternativas de solución.</div>
+        <div><strong>5. Dibujar</strong>Realizar bocetos iniciales del prototipo.</div>
+        <div><strong>6. Diseñar en 3D</strong>Modelar piezas o componentes específicos.</div>
+        <div><strong>7. Fabricar</strong>Imprimir piezas y construir la solución.</div>
+        <div><strong>8. Integrar</strong>Incorporar sensores, robótica y programación.</div>
+        <div><strong>9. Probar y mejorar</strong>Documentar errores, ajustes y nuevas versiones.</div>
+        <div><strong>10. Comunicar</strong>Presentar el prototipo y su proceso de creación.</div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="t-crono">
+      <h3>Cronograma propuesto de 10 semanas</h3>
+      <ul>
+        <li><b>Semana 1 · Lanzamiento:</b> presentación del proyecto, equipos y acercamiento a robótica y TIC.</li>
+        <li><b>Semanas 2, 3 y 4 · Aprender jugando:</b> exploración de kits, programación visual y primeras construcciones; logro: primer robot básico armado y programado.</li>
+        <li><b>Semanas 5 y 6 · Explorar el campo:</b> recorrido por huerta o fincas, identificación y selección de problemas locales.</li>
+        <li><b>Semanas 7, 8 y 9 · Crear la solución:</b> boceto, construcción de maqueta, programación y pruebas. La retroalimentación propone integrar aquí diseño e impresión 3D.</li>
+        <li><b>Semana 10 · Feria de la Tecno-Innovación Rural:</b> exposición de prototipos, evaluación formativa y socialización.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="t-recursos">
+      <h3>Recursos necesarios</h3>
+      <ul>
+        <li>Kits de robótica educativa con bloques, motores y sensores básicos.</li>
+        <li>Computadores o tabletas para programación visual.</li>
+        <li>Materiales reciclados y locales: cartón, botellas, palos de helado y envases.</li>
+        <li>Docente guía para acompañar conexión de componentes y uso del software.</li>
+      </ul>
+      <p><b>Ampliación sugerida desde el proceso que ya inició:</b> software de diseño 3D, impresora 3D y material de impresión para fabricar soportes, cajas protectoras, conectores y otras piezas funcionales de los prototipos.</p>
+    </div>
+
+    <div class="tab-panel" id="t-resultados">
+      <h3>Resultados esperados</h3>
+      <ul>
+        <li>Fortalecer capacidades para afrontar procesos de transformación digital en el campo.</li>
+        <li>Promover sentido de pertenencia territorial y motivación por la innovación.</li>
+        <li>Sentar bases técnicas para prototipos orientados a riego automatizado, monitoreo de cultivos o registro digital de datos.</li>
+        <li>Construir prototipos funcionales que respondan a necesidades observadas por los estudiantes.</li>
+        <li>Documentar el proceso de creación para que el resultado final muestre no solo el dispositivo, sino también la investigación, diseño, pruebas y mejoras.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="t-evaluacion">
+      <h3>Evaluación formativa</h3>
+      <p>La ficha propone evaluar el desarrollo de habilidades investigativas, la creatividad y la viabilidad técnica de las soluciones formuladas por los estudiantes para mejorar procesos productivos y el cuidado del medio ambiente.</p>
+      <p>Para fortalecerla, el repositorio puede conservar evidencias de cada etapa: identificación del problema, bocetos, diseño 3D, programación, funcionamiento, dificultades, ajustes, versión final y explicación del equipo.</p>
+    </div>
+
+    <div class="tab-panel" id="t-evidencias">
+      <h3>Registro fotográfico</h3>
+      <p>Las fotografías evidencian actividades de aproximación a inteligencia artificial, construcción y experimentación tecnológica, uso de herramientas y elaboración de estructuras por parte de los estudiantes.</p>
+      <div class="gallery"><button class="gallery-item" type="button" onclick="openLightbox('tphoto1')">
+      <img id="tphoto1" src="imagen_014.jpg" alt="Evidencia Tecno-rural robótica">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('tphoto2')">
+      <img id="tphoto2" src="imagen_013.jpg" alt="Evidencia Tecno-rural robótica">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('tphoto3')">
+      <img id="tphoto3" src="imagen_015.jpg" alt="Evidencia Tecno-rural robótica">
+    </button></div>
+
+      <h3 style="margin-top:30px">Registro audiovisual</h3>
+      <p>Se recibieron diez videos de evidencia. Para no sobrecargar la aplicación web, esta versión incorpora sus miniaturas y deja preparado el espacio para enlazarlos desde Google Drive o YouTube cuando sean publicados.</p>
+      <div class="video-grid"><article class="video-card">
+      <img src="imagen_016.jpg" alt="Miniatura evidencia audiovisual 1 de Tecno-rural robótica">
+      <div class="vcopy">
+        <b>Video de evidencia 1</b>
+        <span>Archivo: video profe Yeimmy (1).mp4</span>
+      </div>
+    </article>
+<article class="video-card">
+      <img src="imagen_017.jpg" alt="Miniatura evidencia audiovisual 2 de Tecno-rural robótica">
+      <div class="vcopy">
+        <b>Video de evidencia 2</b>
+        <span>Archivo: video profe Yeimmy (2).mp4</span>
+      </div>
+    </article>
+<article class="video-card">
+      <img src="imagen_018.jpg" alt="Miniatura evidencia audiovisual 3 de Tecno-rural robótica">
+      <div class="vcopy">
+        <b>Video de evidencia 3</b>
+        <span>Archivo: video profe Yeimmy (3).mp4</span>
+      </div>
+    </article>
+<article class="video-card">
+      <img src="imagen_019.jpg" alt="Miniatura evidencia audiovisual 4 de Tecno-rural robótica">
+      <div class="vcopy">
+        <b>Video de evidencia 4</b>
+        <span>Archivo: video profe Yeimmy (4).mp4</span>
+      </div>
+    </article>
+<article class="video-card">
+      <img src="imagen_020.jpg" alt="Miniatura evidencia audiovisual 5 de Tecno-rural robótica">
+      <div class="vcopy">
+        <b>Video de evidencia 5</b>
+        <span>Archivo: video profe Yeimmy (5).mp4</span>
+      </div>
+    </article>
+<article class="video-card">
+      <img src="imagen_021.jpg" alt="Miniatura evidencia audiovisual 6 de Tecno-rural robótica">
+      <div class="vcopy">
+        <b>Video de evidencia 6</b>
+        <span>Archivo: video profe Yeimmy (6).mp4</span>
+      </div>
+    </article>
+<article class="video-card">
+      <img src="imagen_022.jpg" alt="Miniatura evidencia audiovisual 7 de Tecno-rural robótica">
+      <div class="vcopy">
+        <b>Video de evidencia 7</b>
+        <span>Archivo: video profe Yeimmy (7).mp4</span>
+      </div>
+    </article>
+<article class="video-card">
+      <img src="imagen_023.jpg" alt="Miniatura evidencia audiovisual 8 de Tecno-rural robótica">
+      <div class="vcopy">
+        <b>Video de evidencia 8</b>
+        <span>Archivo: video profe Yeimmy (8).mp4</span>
+      </div>
+    </article>
+<article class="video-card">
+      <img src="imagen_024.jpg" alt="Miniatura evidencia audiovisual 9 de Tecno-rural robótica">
+      <div class="vcopy">
+        <b>Video de evidencia 9</b>
+        <span>Archivo: video profe Yeimmy (9).mp4</span>
+      </div>
+    </article>
+<article class="video-card">
+      <img src="imagen_025.jpg" alt="Miniatura evidencia audiovisual 10 de Tecno-rural robótica">
+      <div class="vcopy">
+        <b>Video de evidencia 10</b>
+        <span>Archivo: video profe Yeimmy (10).mp4</span>
+      </div>
+    </article></div>
+      <div class="video-note"><b>Publicación recomendada:</b> subir cada MP4 a una carpeta institucional de Google Drive, configurar el permiso correspondiente y reemplazar cada tarjeta por el enlace o reproductor del video. De esta forma el sitio se mantiene ligero y estable.</div>
+    </div></div>
+</section>
+
+
+<section class="center-detail alt" id="centro-4">
+  <div class="container">
+    <div class="kicker" style="color:var(--emo)">Centro de Interés 4 · Proyecto consolidado</div>
+    <h2>Acepto mis emociones para vivir en paz</h2>
+
+    <div class="center-hero">
+      <div class="center-cover emo" style="background-image:
+        linear-gradient(145deg,rgba(111,54,95,.88),rgba(169,79,143,.70)),
+        url('imagen_026.jpg');
+        background-size:cover;background-position:center;">
+        <span class="ci-number">Habilidades socioemocionales · lectura · convivencia</span>
+        <h3>Acepto mis emociones para vivir en paz</h3>
+        <p>Reconocer lo que sentimos, expresarlo con respeto y aprender estrategias para convivir mejor.</p>
+      </div>
+
+      <div class="panel">
+        <h3>Ficha rápida</h3>
+        <div class="facts">
+          <div class="fact pink"><small>Docente orientadora</small><b>Sindy Johana Amezquita Cortes</b></div>
+          <div class="fact pink"><small>Institución</small><b>I.E. Internado Charco Trece</b></div>
+          <div class="fact pink"><small>Población</small><b>150 estudiantes · Transición, Primaria y Secundaria</b></div>
+          <div class="fact pink"><small>Cobertura</small><b>Todas las sedes</b></div>
+        </div>
+        <div class="product-card emo-product">
+          <b>Producto articulador propuesto</b><br>
+          <strong>Museo de las Emociones – Charco Trece</strong>
+          <p><i>Acepto lo que siento, comprendo lo que vivo y aprendo a convivir.</i></p>
+          <p>Un producto físico + digital construido con dibujos, bitácoras, cuentos, frases, audios, dramatizaciones, estrategias de autorregulación y códigos QR.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs emo-tabs" data-tabs="e">
+      <button class="tab-btn active" data-target="e-descripcion">Descripción</button>
+      <button class="tab-btn" data-target="e-objetivos">Objetivos</button>
+      <button class="tab-btn" data-target="e-metodo">Metodología</button>
+      <button class="tab-btn" data-target="e-lectura">Leo, reflexiono y crezco</button>
+      <button class="tab-btn" data-target="e-crono">Cronograma</button>
+      <button class="tab-btn" data-target="e-recursos">Recursos</button>
+      <button class="tab-btn" data-target="e-resultados">Resultados</button>
+      <button class="tab-btn" data-target="e-evaluacion">Evaluación</button>
+      <button class="tab-btn" data-target="e-evidencias">Evidencias</button>
+    </div>
+
+    <div class="tab-panel active" id="e-descripcion">
+      <h3>Justificación</h3>
+      <p>El Centro de Interés constituye una estrategia pedagógica para fortalecer las habilidades socioemocionales mediante experiencias que permitan a los estudiantes reconocer, expresar, comprender y gestionar sus emociones de forma respetuosa y constructiva.</p>
+      <p>Parte de la comprensión de que las emociones influyen en la forma como los estudiantes se relacionan consigo mismos, con sus compañeros, sus familias y la comunidad educativa. Por ello propone espacios seguros de diálogo, escucha, reflexión, creatividad y participación, articulando actividades lúdicas, artísticas, reflexivas y colaborativas.</p>
+      <p>En el contexto escolar rural se valoran las realidades familiares, culturales y comunitarias, fortaleciendo empatía, solidaridad, comunicación asertiva y resolución pacífica de conflictos.</p>
+    </div>
+
+    <div class="tab-panel" id="e-objetivos">
+      <h3>Objetivo principal</h3>
+      <p><b>Fortalecer en los estudiantes las habilidades socioemocionales necesarias para reconocer, aceptar y gestionar sus emociones de manera saludable, promoviendo relaciones basadas en el respeto, la empatía, el diálogo y la convivencia pacífica.</b></p>
+      <h3>Objetivos específicos</h3>
+      <ul>
+        <li>Reconocer las principales emociones y comprender su función en la vida cotidiana.</li>
+        <li>Identificar situaciones, pensamientos y experiencias que generan respuestas emocionales.</li>
+        <li>Promover respiración consciente, pausa, diálogo y búsqueda de apoyo como estrategias de autorregulación.</li>
+        <li>Fortalecer autoestima, autoconocimiento y valoración de capacidades personales.</li>
+        <li>Desarrollar empatía y escucha para comprender las emociones de los demás.</li>
+        <li>Favorecer comunicación asertiva y resolución pacífica de conflictos.</li>
+        <li>Generar espacios de participación, expresión artística y reflexión sobre el bienestar emocional.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="e-metodo">
+      <h3>Ruta metodológica</h3>
+      <p>La propuesta utiliza una metodología activa, participativa, experiencial y reflexiva. Cada actividad se adapta a las edades, necesidades y ritmos de aprendizaje, procurando ambientes de confianza en los que el estudiante pueda expresarse sin temor a ser juzgado.</p>
+      <div class="route emo-route">
+        <div><strong>1. Sensibilización</strong>Cuentos, imágenes, juegos, preguntas y situaciones cotidianas.</div>
+        <div><strong>2. Reconocimiento</strong>Identificación de emociones, señales corporales y situaciones asociadas.</div>
+        <div><strong>3. Expresión</strong>Dibujo, escritura, dramatización, música, diálogo y creación.</div>
+        <div><strong>4. Regulación y convivencia</strong>Estrategias para manejar emociones intensas y resolver conflictos.</div>
+        <div><strong>5. Reflexión y cierre</strong>Valoración de aprendizajes, compromisos y mensajes colectivos.</div>
+      </div>
+      <p style="margin-top:18px"><b>Estrategias:</b> termómetro de emociones, diario emocional, tarjetas, juegos de roles, cuentos, círculos de palabra, ejercicios de respiración, murales, dibujos, frases reflexivas, dramatizaciones y actividades cooperativas.</p>
+    </div>
+
+    <div class="tab-panel" id="e-lectura">
+      <div class="reading-card">
+        <h3>📚 Estrategia de lectura: “Leo, reflexiono y crezco”</h3>
+        <p>La lectura se incorpora como herramienta para el desarrollo personal, la autoestima, la convivencia, los valores, la resiliencia y el reconocimiento de las emociones.</p>
+        <p>Cada estudiante puede escoger libremente textos acordes con su edad e intereses, leer a su propio ritmo y registrar en un <b>Diario del lector</b> frases, situaciones, personajes, emociones, aprendizajes o reflexiones significativas.</p>
+        <p>Al terminar una lectura, la experiencia puede compartirse voluntariamente mediante conversación, exposición, dibujo, escrito, dramatización, cartelera u otra forma creativa. La intención no es competir por cantidad de libros, sino relacionar la lectura con la vida cotidiana y el crecimiento personal.</p>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="e-crono">
+      <h3>Cronograma anual</h3>
+      <ul>
+        <li><b>Febrero – marzo:</b> Conociendo mis emociones.</li>
+        <li><b>Abril – junio:</b> Mis palabras también cuentan; me pongo en los zapatos de los demás.</li>
+        <li><b>Julio – septiembre:</b> Construimos paz desde nuestras emociones.</li>
+        <li><b>Octubre – noviembre:</b> Acepto lo que siento y sigo adelante.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="e-recursos">
+      <h3>Recursos</h3>
+      <ul>
+        <li><b>Humanos:</b> docente orientadora, estudiantes, directivos, familias y comunidad educativa cuando sea pertinente.</li>
+        <li><b>Físicos:</b> aulas, espacios abiertos, carteleras, biblioteca y otros ambientes institucionales.</li>
+        <li><b>Materiales:</b> cartulina, papel, colores, marcadores, lápices, pinturas, revistas, tijeras, pegante, fichas, tarjetas y material reciclable.</li>
+        <li><b>Pedagógicos:</b> cuentos, libros, relatos, guías, juegos, actividades de reflexión, fichas socioemocionales y material audiovisual.</li>
+        <li><b>Tecnológicos:</b> computador, proyector, parlantes o celular cuando estén disponibles y su uso sea pertinente.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="e-resultados">
+      <h3>Resultados esperados</h3>
+      <ul>
+        <li>Reconocer y nombrar diferentes emociones.</li>
+        <li>Identificar señales físicas y situaciones relacionadas con estados emocionales.</li>
+        <li>Aplicar estrategias sencillas ante enojo, tristeza, miedo, frustración o preocupación.</li>
+        <li>Expresar sentimientos y necesidades de forma respetuosa.</li>
+        <li>Fortalecer empatía, escucha activa y respeto por las emociones de otras personas.</li>
+        <li>Mejorar disposición para diálogo, cooperación y convivencia.</li>
+        <li>Reconocer cuándo pedir ayuda a una persona adulta de confianza.</li>
+        <li>Construir compromisos personales y colectivos relacionados con bienestar emocional.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="e-evaluacion">
+      <h3>Evaluación formativa</h3>
+      <p>La evaluación es participativa, continua y cualitativa. Busca reconocer avances, identificar dificultades y orientar nuevas acciones pedagógicas, sin centrarse exclusivamente en una calificación.</p>
+      <ul>
+        <li>Observación directa de participación, expresión emocional y relaciones interpersonales.</li>
+        <li>Preguntas de reflexión al inicio y al cierre.</li>
+        <li>Autoevaluaciones sencillas.</li>
+        <li>Coevaluación respetuosa entre compañeros.</li>
+        <li>Producciones: dibujos, escritos, compromisos, murales y dramatizaciones.</li>
+        <li>Registro pedagógico de avances y necesidades.</li>
+      </ul>
+      <p><b>Criterios principales:</b> reconocimiento emocional, expresión respetuosa, autorregulación, empatía y convivencia.</p>
+    </div>
+
+    <div class="tab-panel" id="e-evidencias">
+      <h3>Galería del proceso</h3>
+      <p>Las evidencias seleccionadas muestran círculos de reflexión, actividades de empatía, expresiones sobre paz y afecto, dinámicas de convivencia, trabajo en aula y participación de la comunidad educativa.</p>
+      <div class="gallery"><button class="gallery-item" type="button" onclick="openLightbox('j1')">
+      <img id="j1" src="imagen_026.jpg" alt="Evidencia pedagógica del Centro de Interés Acepto mis emociones para vivir en paz">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('j2')">
+      <img id="j2" src="imagen_027.jpg" alt="Evidencia pedagógica del Centro de Interés Acepto mis emociones para vivir en paz">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('j3')">
+      <img id="j3" src="imagen_028.jpg" alt="Evidencia pedagógica del Centro de Interés Acepto mis emociones para vivir en paz">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('j4')">
+      <img id="j4" src="imagen_029.jpg" alt="Evidencia pedagógica del Centro de Interés Acepto mis emociones para vivir en paz">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('j5')">
+      <img id="j5" src="imagen_030.jpg" alt="Evidencia pedagógica del Centro de Interés Acepto mis emociones para vivir en paz">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('j6')">
+      <img id="j6" src="imagen_031.jpg" alt="Evidencia pedagógica del Centro de Interés Acepto mis emociones para vivir en paz">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('j7')">
+      <img id="j7" src="imagen_032.jpg" alt="Evidencia pedagógica del Centro de Interés Acepto mis emociones para vivir en paz">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('j8')">
+      <img id="j8" src="imagen_033.jpg" alt="Evidencia pedagógica del Centro de Interés Acepto mis emociones para vivir en paz">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('j9')">
+      <img id="j9" src="imagen_034.jpg" alt="Evidencia pedagógica del Centro de Interés Acepto mis emociones para vivir en paz">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('j10')">
+      <img id="j10" src="imagen_035.jpg" alt="Evidencia pedagógica del Centro de Interés Acepto mis emociones para vivir en paz">
+    </button></div>
+
+      <h3 style="margin-top:30px">Registro audiovisual</h3>
+      <div class="video-grid"><article class="video-card">
+      <img src="imagen_036.jpg" alt="Miniatura del video 1 del Centro de Interés">
+      <div class="vcopy">
+        <b>Video de evidencia 1</b>
+        <span>Archivo audiovisual de actividades socioemocionales</span>
+      </div>
+    </article>
+<article class="video-card">
+      <img src="imagen_037.jpg" alt="Miniatura del video 2 del Centro de Interés">
+      <div class="vcopy">
+        <b>Video de evidencia 2</b>
+        <span>Archivo audiovisual de actividades socioemocionales</span>
+      </div>
+    </article></div>
+      <div class="privacy-note"><b>Criterio de publicación:</b> en esta versión se omiten del sitio público capturas con mensajes personales extensos o testimonios íntimos de estudiantes. Pueden conservarse como evidencia interna institucional y publicarse únicamente cuando existan las autorizaciones correspondientes.</div>
+    </div></div>
+</section>
+
+
+<section class="center-detail" id="centro-5">
+  <div class="container">
+    <div class="kicker" style="color:var(--eco)">Centro de Interés 5 · Proyecto consolidado</div>
+    <h2>Reciclando con jabón</h2>
+
+    <div class="center-hero">
+      <div class="center-cover eco" style="background-image:
+        linear-gradient(145deg,rgba(23,102,82,.90),rgba(43,155,125,.72)),
+        url('imagen_038.jpg');
+        background-size:cover;background-position:center;">
+        <span class="ci-number">Ambiente · ciencia · creatividad · emprendimiento</span>
+        <h3>Reciclando con jabón</h3>
+        <p>Una experiencia rural multigrado para aprovechar recursos, transformar un producto cotidiano y convertirlo en aprendizaje.</p>
+      </div>
+
+      <div class="panel">
+        <h3>Ficha rápida</h3>
+        <div class="facts">
+          <div class="fact mint"><small>Docente líder</small><b>Mayerly Katerin Clavijo</b></div>
+          <div class="fact mint"><small>Sede</small><b>El Diamante</b></div>
+          <div class="fact mint"><small>Población</small><b>Preescolar y Básica Primaria</b></div>
+          <div class="fact mint"><small>Contexto</small><b>Rural · atención multigrado</b></div>
+        </div>
+
+        <div class="product-card eco-product">
+          <b>Producto articulador</b><br>
+          <strong>EcoJabón El Diamante: del aprovechamiento a un producto diseñado por nuestros niños</strong>
+          <p>Una pequeña línea escolar que integra jabón transformado, identidad visual, empaque, etiqueta, código QR, posibles moldes diseñados con apoyo tecnológico y registro sencillo de producción y costos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs eco-tabs" data-tabs="m">
+      <button class="tab-btn active" data-target="m-descripcion">Descripción</button>
+      <button class="tab-btn" data-target="m-objetivos">Objetivos</button>
+      <button class="tab-btn" data-target="m-metodo">Metodología</button>
+      <button class="tab-btn" data-target="m-crono">Cronograma</button>
+      <button class="tab-btn" data-target="m-recursos">Recursos</button>
+      <button class="tab-btn" data-target="m-resultados">Resultados</button>
+      <button class="tab-btn" data-target="m-evaluacion">Evaluación</button>
+      <button class="tab-btn" data-target="m-evidencias">Evidencias</button>
+    </div>
+
+    <div class="tab-panel active" id="m-descripcion">
+      <h3>Justificación</h3>
+      <p>“Reciclando con jabón” nace como una propuesta pedagógica contextualizada para la Sede El Diamante, institución educativa rural donde se desarrolla un modelo de atención multigrado con estudiantes de preescolar y básica primaria.</p>
+      <p>El proyecto aprovecha un producto de uso cotidiano como el jabón en barra y lo transforma en nuevas unidades mediante un proceso sencillo, pedagógico y acompañado por la docente. De esta forma, el cuidado ambiental se articula con matemáticas, lenguaje, ciencias naturales, educación artística y competencias ciudadanas.</p>
+      <p>La experiencia busca trascender el aula e involucrar progresivamente a las familias y a la comunidad, relacionando escuela, ambiente, creatividad, economía y territorio.</p>
+
+      <div class="eco-question">
+        ¿Cómo podemos aprovechar un jabón para obtener más productos y, al mismo tiempo, aprender y generar una oportunidad de emprendimiento para nuestra escuela?
+      </div>
+    </div>
+
+    <div class="tab-panel" id="m-objetivos">
+      <h3>Objetivo principal</h3>
+      <p><b>Desarrollar en los estudiantes de preescolar y básica primaria habilidades ambientales, científicas, creativas, matemáticas, comunicativas y emprendedoras mediante el aprovechamiento y transformación de jabón en barra en nuevos productos, fortaleciendo el trabajo colaborativo y la relación entre la escuela y la comunidad rural.</b></p>
+
+      <h3>Objetivos específicos</h3>
+      <ul>
+        <li>Promover prácticas de aprovechamiento responsable de productos y recursos de uso cotidiano.</li>
+        <li>Reconocer la importancia de reducir el desperdicio y fortalecer hábitos de cuidado ambiental.</li>
+        <li>Desarrollar observación, exploración y experimentación mediante experiencias de transformación.</li>
+        <li>Fortalecer competencias matemáticas mediante conteo, medición, costos, precios y posibles ganancias.</li>
+        <li>Desarrollar habilidades comunicativas y artísticas mediante nombre, logo, etiquetas, empaques y mensajes de promoción.</li>
+        <li>Fortalecer trabajo colaborativo, responsabilidad, creatividad, autonomía y toma de decisiones.</li>
+        <li>Introducir conceptos básicos de emprendimiento mediante elaboración, presentación y comercialización.</li>
+        <li>Vincular familias y comunidad rural con el Centro de Interés.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="m-metodo">
+      <h3>Metodología</h3>
+      <p>La propuesta se desarrolla mediante una metodología <b>activa, participativa, experiencial y contextualizada</b>, atendiendo las características de la escuela rural y del modelo multigrado.</p>
+
+      <div class="route eco-route">
+        <div><strong>1. Exploramos</strong>Conversamos sobre el uso del jabón, el desperdicio y las posibilidades de aprovecharlo.</div>
+        <div><strong>2. Investigamos</strong>Aprendemos sobre materiales, higiene, ambiente, transformación y emprendimiento.</div>
+        <div><strong>3. Transformamos</strong>Participamos, según la edad, en experiencias prácticas de aprovechamiento y elaboración.</div>
+        <div><strong>4. Creamos nuestra marca</strong>Diseñamos nombre, logo, etiquetas, empaque, mensajes y presentación.</div>
+        <div><strong>5. Aprendemos a administrar</strong>Contamos unidades y registramos cantidades, costos, precios, ingresos y ventas.</div>
+        <div><strong>6. Comercializamos</strong>Presentamos y promocionamos el producto dentro de la comunidad educativa.</div>
+        <div><strong>7. Reflexionamos</strong>Valoramos aprendizajes, dificultades, trabajo en equipo y cuidado de los recursos.</div>
+        <div><strong>8. Proyección tecnológica</strong>Digitalizamos la identidad, incorporamos QR y exploramos diseño 3D de moldes o elementos del producto.</div>
+      </div>
+
+      <div class="safety-box">
+        <b>Seguridad:</b> las actividades que impliquen manipulación de elementos calientes u otros riesgos deben ser realizadas exclusivamente por la persona adulta responsable. La participación de los estudiantes se ajusta a su edad.
+      </div>
+    </div>
+
+    <div class="tab-panel" id="m-crono">
+      <h3>Cronograma de implementación</h3>
+      <ul>
+        <li><b>Semanas 1–2 · Exploramos:</b> diagnóstico, identificación del problema y sensibilización ambiental.</li>
+        <li><b>Semanas 3–4 · Investigamos:</b> aprovechamiento, ambiente, jabón y emprendimiento.</li>
+        <li><b>Semanas 5–8 · Transformamos:</b> experiencias prácticas y elaboración del producto.</li>
+        <li><b>Semanas 9–10 · Creamos:</b> diseño de nombre, logo, etiquetas y empaques.</li>
+        <li><b>Semanas 11–12 · Calculamos:</b> conteo, registro de producción, costos y precios.</li>
+        <li><b>Semanas 13–14 · Comercializamos:</b> promoción y venta en la comunidad.</li>
+        <li><b>Semanas 15–16 · Evaluamos:</b> reflexión, evaluación y socialización de resultados.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="m-recursos">
+      <h3>Recursos materiales</h3>
+      <ul>
+        <li>Jabón en barra para aprovechamiento.</li>
+        <li>Recipientes adecuados y moldes.</li>
+        <li>Elementos de protección e higiene.</li>
+        <li>Material para empaques.</li>
+        <li>Papel, cartulina o cartón reciclado.</li>
+        <li>Marcadores, colores, pinturas y etiquetas.</li>
+        <li>Balanza, cuando esté disponible.</li>
+        <li>Formatos o cuadernos para registro de cantidades y ventas.</li>
+        <li>Material audiovisual o impreso para sensibilización ambiental.</li>
+      </ul>
+
+      <h3>Recursos humanos</h3>
+      <ul>
+        <li>Docente responsable para orientar, acompañar y supervisar.</li>
+        <li>Estudiantes de preescolar y primaria como participantes activos.</li>
+        <li>Familias como apoyo en recolección, acompañamiento, difusión y comercialización.</li>
+        <li>Aliados de la comunidad cuando puedan aportar conocimientos, materiales o acompañamiento.</li>
+      </ul>
+
+      <p><b>Proyección tecnológica:</b> cuando se disponga de los recursos, pueden incorporarse computador o tableta para diseño de etiquetas y QR, además de software e impresión 3D para explorar moldes o elementos de identificación del producto.</p>
+    </div>
+
+    <div class="tab-panel" id="m-resultados">
+      <h3>Resultados esperados</h3>
+      <ul>
+        <li>Reconocer la importancia del aprovechamiento y la reducción del desperdicio.</li>
+        <li>Desarrollar prácticas de cuidado ambiental aplicables a la vida cotidiana.</li>
+        <li>Participar activamente en la transformación de un producto de uso cotidiano.</li>
+        <li>Fortalecer habilidades matemáticas relacionadas con cantidades, conteo, medición, costos y ventas.</li>
+        <li>Desarrollar habilidades comunicativas mediante la creación y promoción del producto.</li>
+        <li>Fortalecer creatividad, autonomía, responsabilidad y trabajo colaborativo.</li>
+        <li>Comprender conceptos básicos de emprendimiento.</li>
+        <li>Elaborar y presentar un producto terminado para su comercialización en la comunidad.</li>
+        <li>Fortalecer la relación entre escuela, familia y comunidad.</li>
+      </ul>
+
+      <h3>Impacto esperado</h3>
+      <p><b>En el aula:</b> integración de distintas áreas del conocimiento mediante una experiencia práctica.</p>
+      <p><b>En la escuela:</b> fortalecimiento de la cultura ambiental, el emprendimiento escolar y la articulación con PEI y PRAE.</p>
+      <p><b>En las familias y el territorio:</b> reconocimiento de la aplicación cotidiana y económica de los aprendizajes escolares.</p>
+    </div>
+
+    <div class="tab-panel" id="m-evaluacion">
+      <h3>Evaluación formativa propuesta</h3>
+      <p>La ficha original deja la sección de evaluación pendiente de desarrollo. Para consolidar el Centro de Interés se propone una evaluación sencilla basada en evidencias del proceso y ajustada a la edad de los estudiantes.</p>
+
+      <div class="evaluation-grid">
+        <div><b>Participación</b>Interés, compromiso y disposición durante las actividades.</div>
+        <div><b>Cuidado ambiental</b>Comprensión del aprovechamiento de recursos y reducción del desperdicio.</div>
+        <div><b>Trabajo colaborativo</b>Responsabilidad, cooperación, respeto y toma de decisiones.</div>
+        <div><b>Aprendizajes por grado</b>Conteo, medición, registro, comunicación y experimentación según la edad.</div>
+        <div><b>Creatividad</b>Aportes a nombre, marca, etiqueta, empaque y presentación.</div>
+        <div><b>Producto elaborado</b>Calidad del proceso, presentación y comprensión de su elaboración.</div>
+        <div><b>Emprendimiento</b>Comprensión básica de cantidades, costos, precios, ingresos y ventas.</div>
+        <div><b>Reflexión</b>Capacidad para expresar qué aprendió, qué dificultad encontró y cómo puede mejorar.</div>
+      </div>
+
+      <h3>Instrumentos sugeridos</h3>
+      <ul>
+        <li>Observación directa y registro anecdótico.</li>
+        <li>Lista de cotejo por fase.</li>
+        <li>Portafolio de dibujos, bocetos, etiquetas y registros.</li>
+        <li>Autoevaluación oral o gráfica para estudiantes pequeños.</li>
+        <li>Registro de producción, costos y ventas para grados superiores.</li>
+        <li>Fotografías del proceso y del producto final.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="m-evidencias">
+      <h3>Galería del proceso</h3>
+      <p>Las evidencias muestran la preparación de materiales, el acompañamiento de adultos responsables, el proceso de transformación, el vaciado y moldeado del producto y la presentación final del jabón elaborado.</p>
+      <div class="gallery">
+        <button class="gallery-item" type="button" onclick="openLightbox('m1')">
+      <img id="m1" src="imagen_039.jpg" alt="Evidencia del Centro de Interés Reciclando con jabón">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('m2')">
+      <img id="m2" src="imagen_038.jpg" alt="Evidencia del Centro de Interés Reciclando con jabón">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('m3')">
+      <img id="m3" src="imagen_040.jpg" alt="Evidencia del Centro de Interés Reciclando con jabón">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('m4')">
+      <img id="m4" src="imagen_041.jpg" alt="Evidencia del Centro de Interés Reciclando con jabón">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('m5')">
+      <img id="m5" src="imagen_042.jpg" alt="Evidencia del Centro de Interés Reciclando con jabón">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('m6')">
+      <img id="m6" src="imagen_043.jpg" alt="Evidencia del Centro de Interés Reciclando con jabón">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('m7')">
+      <img id="m7" src="imagen_044.jpg" alt="Evidencia del Centro de Interés Reciclando con jabón">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('m8')">
+      <img id="m8" src="imagen_045.jpg" alt="Evidencia del Centro de Interés Reciclando con jabón">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('m9')">
+      <img id="m9" src="imagen_046.jpg" alt="Evidencia del Centro de Interés Reciclando con jabón">
+    </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="center-detail alt" id="centro-6">
+  <div class="container">
+    <div class="kicker" style="color:var(--agro)">Centro de Interés 6 · Proyecto consolidado</div>
+    <h2>Principios Agropecuarios: “Sembrando vida, conocimiento y territorio”</h2>
+    <div class="center-hero">
+      <div class="center-cover agro" style="background-image:linear-gradient(145deg,rgba(53,93,36,.91),rgba(109,143,47,.70)),url('imagen_047.jpg');background-size:cover;background-position:center;">
+        <span class="ci-number">Territorio · agroecología · ciencia · investigación</span><h3>Sembrando vida, conocimiento y territorio</h3><p>El territorio se convierte en laboratorio pedagógico para observar, sembrar, registrar, analizar y aprender haciendo.</p>
+      </div>
+      <div class="panel"><h3>Ficha rápida</h3><div class="facts">
+        <div class="fact agro"><small>Docente líder</small><b>Diana Patricia Matiz Cano</b></div><div class="fact agro"><small>Institución</small><b>I.E. Internado Charco Trece</b></div><div class="fact agro"><small>Población</small><b>Básica Secundaria y Media</b></div><div class="fact agro"><small>Duración</small><b>Un año lectivo</b></div>
+      </div><div class="product-card agro-product"><b>Producto articulador</b><br><strong>Huerta Escolar Inteligente – Sembrando vida, conocimiento y territorio</strong><p>Huerta, lombricultivo, compostaje, cultivos, registros de campo, señalización, fichas técnicas y códigos QR, con posibilidad futura de incorporar sensores y pequeños prototipos de monitoreo.</p></div></div>
+    </div>
+
+    <div class="tabs agro-tabs" data-tabs="d">
+      <button class="tab-btn active" data-target="d-descripcion">Descripción</button><button class="tab-btn" data-target="d-objetivos">Objetivos</button><button class="tab-btn" data-target="d-metodo">Metodología</button><button class="tab-btn" data-target="d-lineas">Líneas de trabajo</button><button class="tab-btn" data-target="d-crono">Cronograma</button><button class="tab-btn" data-target="d-recursos">Recursos</button><button class="tab-btn" data-target="d-resultados">Resultados</button><button class="tab-btn" data-target="d-evaluacion">Evaluación</button><button class="tab-btn" data-target="d-evidencias">Evidencias</button>
+    </div>
+
+    <div class="tab-panel active" id="d-descripcion"><h3>Justificación</h3><p>El Centro de Interés aprovecha el contexto rural de la I.E. Internado Charco Trece para relacionar el aprendizaje escolar con el suelo, los cultivos, los animales y el uso responsable de residuos orgánicos.</p><p>La propuesta plantea experiencias de aprendizaje activo en las que los estudiantes observan, experimentan, registran información, toman decisiones y reflexionan sobre prácticas agropecuarias responsables. Se desarrolla alrededor de lombricultivo, compostaje, abonos orgánicos, huerta escolar y cultivos de plátano y yuca.</p><p>También permite integrar Ciencias Naturales, Matemáticas, Ética y Valores, Emprendimiento, Lenguaje y Tecnología.</p><div class="smart-huerta"><strong>Proyección pedagógica y tecnológica:</strong> conservar la esencia agropecuaria y avanzar de forma gradual hacia un pequeño laboratorio agropecuario escolar donde los estudiantes registren variables, comparen datos y comuniquen lo aprendido.</div></div>
+
+    <div class="tab-panel" id="d-objetivos"><h3>Objetivo principal</h3><p><b>Fortalecer la formación integral de los estudiantes mediante experiencias prácticas de lombricultivo, compostaje, elaboración y uso de abonos orgánicos, adecuación y siembra de la huerta escolar y manejo de cultivos de plátano y yuca, promoviendo el aprendizaje activo, el cuidado del ambiente, el trabajo colaborativo, la apropiación del territorio y capacidades aplicables a la vida rural.</b></p><h3>Objetivos específicos</h3><ul><li>Reconocer la importancia de la materia orgánica y su transformación.</li><li>Implementar y mantener un lombricultivo escolar con registros.</li><li>Construir y hacer seguimiento a una pila de compost.</li><li>Aplicar criterios básicos para el manejo responsable de abonos orgánicos.</li><li>Implementar la huerta escolar con buenas prácticas agrícolas.</li><li>Establecer y manejar parcelas demostrativas de plátano y yuca.</li><li>Desarrollar observación, registro de datos, resolución de problemas y toma de decisiones.</li><li>Promover el aprovechamiento de residuos y el cuidado del suelo, agua y plantas.</li><li>Generar productos y evidencias pedagógicas.</li></ul></div>
+
+    <div class="tab-panel" id="d-metodo"><h3>Metodología</h3><p>Se emplea una metodología <b>activa, práctica, contextualizada y basada en proyectos</b>. El estudiante es protagonista de procesos de observación, experimentación, trabajo colaborativo, registro y reflexión.</p><div class="route agro-route"><div><strong>Aprender haciendo</strong>Actividades reales de manejo del suelo, residuos, lombricultivo, compost, huerta y cultivos.</div><div><strong>Exploración del territorio</strong>Identificación de recursos, espacios, necesidades y posibilidades.</div><div><strong>Investigación escolar</strong>Preguntas orientadoras, observaciones y registros periódicos.</div><div><strong>Trabajo colaborativo</strong>Equipos con funciones rotativas de manejo, registro y socialización.</div><div><strong>Teoría–práctica–reflexión</strong>Explicación, práctica supervisada, registro y reflexión.</div><div><strong>Integración curricular</strong>Ciencias, Matemáticas, Ética, Emprendimiento, Lenguaje y Tecnología.</div><div><strong>Educación ambiental</strong>Cuidado del territorio y uso responsable de recursos.</div><div><strong>Proyección tecnológica</strong>Registros digitales, QR, sensores y análisis de datos cuando sea posible.</div></div><div class="smart-huerta"><strong>Ruta:</strong> Sembrar → observar → registrar → analizar → tomar decisiones → comunicar lo aprendido.</div></div>
+
+    <div class="tab-panel" id="d-lineas"><h3>Líneas de trabajo</h3><div class="agro-lines"><div class="agro-line"><b>1. Lombricultivo</b>Espacio, sustrato, alimentación, humedad, observación y cosecha de humus.</div><div class="agro-line"><b>2. Pila de compost</b>Residuos vegetales, capas, aireación, humedad, volteo y compost maduro.</div><div class="agro-line"><b>3. Abonos orgánicos</b>Desechos del establo, gallinaza y humus con aplicación responsable.</div><div class="agro-line"><b>4. Huerta escolar</b>Adecuación, suelo, siembra, mantenimiento y uso de abonos orgánicos.</div><div class="agro-line"><b>5. Cultivo de plátano</b>Preparación, siembra, nutrición, manejo y seguimiento.</div><div class="agro-line"><b>6. Cultivo de yuca</b>Preparación, establecimiento, manejo, observación y seguimiento.</div></div></div>
+
+    <div class="tab-panel" id="d-crono"><h3>Cronograma anual flexible</h3><p>La implementación se ajusta al calendario académico, condiciones climáticas, ciclos de cultivo, espacios y recursos disponibles.</p><ul><li><b>Inicio:</b> socialización, diagnóstico, reconocimiento de espacios y normas de seguridad.</li><li><b>Periodos 1–2–3:</b> lombricultivo, compostaje, abonos orgánicos, huerta, plátano, yuca y mantenimiento integrado.</li><li><b>Seguimiento:</b> observación, registros comparativos y propuestas de mejora.</li><li><b>Aprovechamiento:</b> uso pedagógico de humus y compost y socialización de evidencias.</li><li><b>Cierre:</b> valoración del proceso, productos, dificultades, recomendaciones y proyección.</li></ul></div>
+
+    <div class="tab-panel" id="d-recursos"><h3>Recursos</h3><ul><li>Espacio para lombricultivo y compostaje.</li><li>Material vegetal, hojas, restos de poda y residuos orgánicos apropiados.</li><li>Pala, azadón, rastrillo, carretilla, baldes, guantes, botas y herramientas disponibles.</li><li>Cuadernos, bitácoras, formatos y recursos digitales.</li><li>Material de propagación de plátano y yuca.</li><li>Elementos de señalización e identificación de parcelas.</li></ul><h3>Actores</h3><ul><li><b>Docente:</b> orientación, seguridad, seguimiento y evaluación.</li><li><b>Estudiantes:</b> ejecución, cuidado, observación, registro, análisis y socialización.</li><li><b>Directivos:</b> gestión de tiempos y espacios.</li><li><b>Familias/comunidad:</b> saberes y prácticas productivas locales.</li><li><b>Aliados técnicos:</b> apoyo especializado cuando se gestione.</li></ul></div>
+
+    <div class="tab-panel" id="d-resultados"><h3>Resultados esperados</h3><ul><li>Lombricultivo escolar organizado y con bitácora.</li><li>Pila de compost manejada por estudiantes y documentada.</li><li>Producción y uso pedagógico de humus y compost.</li><li>Manejo responsable de residuos del establo y gallinaza.</li><li>Huerta escolar y parcelas de plátano y yuca con registros.</li><li>Estudiantes capaces de explicar procesos de descomposición, fertilidad y manejo de cultivos.</li><li>Fortalecimiento de trabajo colaborativo, autonomía y resolución de problemas.</li><li>Bitácoras, fotografías, fichas, productos y socializaciones.</li></ul><div class="smart-huerta"><strong>Huerta Escolar Inteligente:</strong> señalización, fichas técnicas y códigos QR producidos por los estudiantes. En una etapa posterior, y según recursos, pueden incorporarse sensores de humedad del suelo, temperatura y humedad ambiental con micro:bit, Arduino o ESP32, además de un pequeño prototipo de riego automatizado en una parcela demostrativa.</div></div>
+
+    <div class="tab-panel" id="d-evaluacion"><h3>Evaluación formativa</h3><p>La evaluación es continua y se centra tanto en los aprendizajes como en la participación y el proceso productivo.</p><h3>Criterios</h3><ul><li>Comprensión conceptual.</li><li>Procedimientos y normas de seguridad.</li><li>Participación, responsabilidad y trabajo colaborativo.</li><li>Observación, registro y comunicación de cambios.</li><li>Uso responsable de materiales.</li><li>Identificación de problemas y alternativas.</li><li>Cuidado del ambiente.</li><li>Relación entre aprendizaje y territorio.</li></ul><h3>Herramientas</h3><ul><li>Lista de cotejo.</li><li>Rúbrica de desempeño práctico.</li><li>Bitácora individual o grupal.</li><li>Fichas de observación.</li><li>Autoevaluación y coevaluación.</li><li>Portafolio de evidencias.</li><li>Socialización final.</li></ul></div>
+
+    <div class="tab-panel" id="d-evidencias"><h3>Galería del proceso</h3><p>Las evidencias muestran preparación de espacios, manejo de residuos orgánicos, huerta, cultivos, trabajo colaborativo y observación directa de los procesos agropecuarios.</p><div class="gallery"><button class="gallery-item" type="button" onclick="openLightbox('d1')"><img id="d1" src="imagen_048.jpg" alt="Evidencia del Centro de Interés Sembrando vida, conocimiento y territorio"></button>
+<button class="gallery-item" type="button" onclick="openLightbox('d2')"><img id="d2" src="imagen_049.jpg" alt="Evidencia del Centro de Interés Sembrando vida, conocimiento y territorio"></button>
+<button class="gallery-item" type="button" onclick="openLightbox('d3')"><img id="d3" src="imagen_050.jpg" alt="Evidencia del Centro de Interés Sembrando vida, conocimiento y territorio"></button>
+<button class="gallery-item" type="button" onclick="openLightbox('d4')"><img id="d4" src="imagen_051.jpg" alt="Evidencia del Centro de Interés Sembrando vida, conocimiento y territorio"></button>
+<button class="gallery-item" type="button" onclick="openLightbox('d5')"><img id="d5" src="imagen_047.jpg" alt="Evidencia del Centro de Interés Sembrando vida, conocimiento y territorio"></button>
+<button class="gallery-item" type="button" onclick="openLightbox('d6')"><img id="d6" src="imagen_052.jpg" alt="Evidencia del Centro de Interés Sembrando vida, conocimiento y territorio"></button>
+<button class="gallery-item" type="button" onclick="openLightbox('d7')"><img id="d7" src="imagen_053.jpg" alt="Evidencia del Centro de Interés Sembrando vida, conocimiento y territorio"></button>
+<button class="gallery-item" type="button" onclick="openLightbox('d8')"><img id="d8" src="imagen_054.jpg" alt="Evidencia del Centro de Interés Sembrando vida, conocimiento y territorio"></button>
+<button class="gallery-item" type="button" onclick="openLightbox('d9')"><img id="d9" src="imagen_055.jpg" alt="Evidencia del Centro de Interés Sembrando vida, conocimiento y territorio"></button>
+<button class="gallery-item" type="button" onclick="openLightbox('d10')"><img id="d10" src="imagen_056.jpg" alt="Evidencia del Centro de Interés Sembrando vida, conocimiento y territorio"></button>
+<button class="gallery-item" type="button" onclick="openLightbox('d11')"><img id="d11" src="imagen_057.jpg" alt="Evidencia del Centro de Interés Sembrando vida, conocimiento y territorio"></button>
+<button class="gallery-item" type="button" onclick="openLightbox('d12')"><img id="d12" src="imagen_058.jpg" alt="Evidencia del Centro de Interés Sembrando vida, conocimiento y territorio"></button>
+<button class="gallery-item" type="button" onclick="openLightbox('d13')"><img id="d13" src="imagen_059.jpg" alt="Evidencia del Centro de Interés Sembrando vida, conocimiento y territorio"></button>
+<button class="gallery-item" type="button" onclick="openLightbox('d14')"><img id="d14" src="imagen_060.jpg" alt="Evidencia del Centro de Interés Sembrando vida, conocimiento y territorio"></button>
+<button class="gallery-item" type="button" onclick="openLightbox('d15')"><img id="d15" src="imagen_061.jpg" alt="Evidencia del Centro de Interés Sembrando vida, conocimiento y territorio"></button>
+<button class="gallery-item" type="button" onclick="openLightbox('d16')"><img id="d16" src="imagen_062.jpg" alt="Evidencia del Centro de Interés Sembrando vida, conocimiento y territorio"></button></div><h3 style="margin-top:30px">Registro audiovisual</h3><div class="video-section-note"><b>Video integrado:</b> está incorporado directamente en la página y se reproduce con el botón ▶.</div><div class="video-grid"><article class="video-card"><video controls playsinline preload="metadata"><source src="video_001.mp4" type="video/mp4">Tu navegador no permite reproducir este video.</video><div class="vcopy"><b>Video de evidencia 1</b><span class="video-help">Trabajo práctico del Centro de Interés.</span></div></article></div></div>
+  </div>
+</section>
+
+
+<section class="center-detail" id="centro-7">
+  <div class="container">
+    <div class="kicker" style="color:var(--chem)">Centro de Interés 7 · Proyecto consolidado</div>
+    <h2>CHEMISTRY IN ENGLISH: Aprendiendo la tabla periódica en dos idiomas</h2>
+
+    <div class="center-hero">
+      <div class="center-cover chemistry">
+        <span class="ci-number">Chemistry · English · Scientific communication</span>
+        <h3>Interactive Bilingual Periodic Table – Charco Trece</h3>
+        <p>Aprender química utilizando el inglés como herramienta para investigar, organizar y comunicar conocimiento científico.</p>
+      </div>
+
+      <div class="panel">
+        <h3>Ficha rápida</h3>
+        <div class="facts">
+          <div class="fact chemistry"><small>Docentes líderes</small><b>David Osorio y Raúl Torres</b></div>
+          <div class="fact chemistry"><small>Áreas articuladas</small><b>Ciencias Naturales – Química + Inglés</b></div>
+          <div class="fact chemistry"><small>Sede</small><b>Principal · I.E. Internado Charco Trece</b></div>
+          <div class="fact chemistry"><small>Población</small><b>Por focalizar institucionalmente</b></div>
+        </div>
+
+        <div class="product-card chem-product">
+          <b>Producto articulador</b><br>
+          <strong>CHEMISTRY IN ENGLISH – Interactive Periodic Table Charco Trece</strong>
+          <p>Tabla periódica bilingüe física e interactiva con códigos QR, fichas digitales, audios, videos cortos y posibilidades de diseño e impresión 3D construidas progresivamente por los estudiantes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs chem-tabs" data-tabs="c">
+      <button class="tab-btn active" data-target="c-descripcion">Descripción</button>
+      <button class="tab-btn" data-target="c-objetivos">Objetivos</button>
+      <button class="tab-btn" data-target="c-metodo">Metodología</button>
+      <button class="tab-btn" data-target="c-producto">Producto interactivo</button>
+      <button class="tab-btn" data-target="c-crono">Cronograma</button>
+      <button class="tab-btn" data-target="c-recursos">Recursos</button>
+      <button class="tab-btn" data-target="c-resultados">Resultados</button>
+      <button class="tab-btn" data-target="c-evaluacion">Evaluación</button>
+      <button class="tab-btn" data-target="c-evidencias">Evidencias</button>
+    </div>
+
+    <div class="tab-panel active" id="c-descripcion">
+      <h3>Justificación</h3>
+      <p>El Centro de Interés integra Ciencias Naturales – Química e Inglés mediante la construcción y socialización de una tabla periódica bilingüe. El propósito es ampliar el vocabulario científico, favorecer el uso funcional del inglés en situaciones académicas y consolidar conocimientos sobre los elementos químicos.</p>
+
+      <p>Los estudiantes participan como investigadores, diseñadores, organizadores y expositores: buscan información, la seleccionan, verifican, organizan y comunican. De esta manera, la lengua extranjera funciona como un medio para comprender y comunicar contenidos científicos, sin sustituir la enseñanza de la química ni del inglés.</p>
+
+      <div class="periodic-preview" aria-label="Ejemplo de elementos bilingües">
+        <div class="element-card"><strong>H</strong><small>Hydrogen</small><span>Hidrógeno</span></div>
+        <div class="element-card"><strong>He</strong><small>Helium</small><span>Helio</span></div>
+        <div class="element-card"><strong>C</strong><small>Carbon</small><span>Carbono</span></div>
+        <div class="element-card"><strong>O</strong><small>Oxygen</small><span>Oxígeno</span></div>
+        <div class="element-card"><strong>Fe</strong><small>Iron</small><span>Hierro</span></div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="c-objetivos">
+      <h3>Objetivo principal</h3>
+      <p><b>Fomentar el uso del inglés en el aprendizaje de la tabla periódica mediante la elaboración y socialización de una tabla periódica bilingüe español–inglés, fortaleciendo el vocabulario científico, la comprensión de conceptos químicos y la capacidad de comunicar conocimientos básicos de química en un segundo idioma.</b></p>
+
+      <h3>Objetivos específicos</h3>
+      <ul>
+        <li>Reconocer y organizar los elementos químicos y su representación en español e inglés.</li>
+        <li>Ampliar el vocabulario básico en inglés relacionado con elementos y conceptos de la tabla periódica.</li>
+        <li>Relacionar nombre, símbolo y número atómico con su denominación en ambos idiomas.</li>
+        <li>Fortalecer pronunciación y uso oral del vocabulario científico mediante socialización.</li>
+        <li>Desarrollar investigación, organización de información, creatividad y trabajo colaborativo.</li>
+        <li>Promover el inglés como herramienta para acceder y comunicar conocimiento científico.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="c-metodo">
+      <h3>Metodología</h3>
+      <p>La propuesta desarrolla una secuencia interdisciplinaria que combina investigación, organización de información, elaboración de un producto, práctica del vocabulario científico, comunicación oral y reflexión.</p>
+
+      <div class="route chem-route">
+        <div><strong>1. Introducción y motivación</strong>Reconocer vocabulario como element, periodic table, atomic number y chemical symbol.</div>
+        <div><strong>2. Investigación bilingüe</strong>Consultar nombres, símbolos y números atómicos en español e inglés.</div>
+        <div><strong>3. Diseño de la tabla</strong>Organizar la información procurando orden, legibilidad y correspondencia bilingüe.</div>
+        <div><strong>4. Práctica del vocabulario</strong>Pronunciar elementos y utilizar frases sencillas en inglés.</div>
+        <div><strong>5. Socialización</strong>Presentar el producto y comunicar elementos seleccionados en ambos idiomas.</div>
+        <div><strong>6. Reflexión y evaluación</strong>Autoevaluar aprendizajes de química e inglés e identificar aspectos por mejorar.</div>
+      </div>
+
+      <div class="interactive-box">
+        <strong>Ampliación integrada:</strong>
+        la tabla física se conserva como punto de partida, pero puede evolucionar progresivamente hacia una experiencia interactiva donde cada equipo sea responsable de investigar y comunicar uno o varios elementos químicos.
+      </div>
+    </div>
+
+    <div class="tab-panel" id="c-producto">
+      <h3>Interactive Bilingual Periodic Table – Charco Trece</h3>
+      <p>El producto consolidado propone conservar la tabla física y agregar progresivamente componentes digitales y tridimensionales.</p>
+
+      <div class="route chem-route">
+        <div><strong>Tabla física</strong>Elemento, símbolo, número atómico y nombre en español e inglés.</div>
+        <div><strong>Código QR</strong>Acceso a una ficha digital creada por los estudiantes.</div>
+        <div><strong>Ficha digital</strong>Propiedades básicas, usos, presencia en objetos cotidianos y dato curioso.</div>
+        <div><strong>Audio</strong>Pronunciación del nombre del elemento y una frase corta en inglés.</div>
+        <div><strong>Video</strong>Cada equipo puede convertirse en “embajador de un elemento” con una presentación de 30–60 segundos.</div>
+        <div><strong>Diseño 3D</strong>Fichas, símbolos, modelos atómicos sencillos o piezas representativas de determinados elementos.</div>
+      </div>
+
+      <div class="interactive-box">
+        <strong>Ejemplo de contenido QR:</strong><br><br>
+        <b>Oxygen – Oxígeno</b><br>
+        Symbol: O<br>
+        Atomic number: 8<br>
+        “This is oxygen. Its symbol is O.”<br><br>
+        ¿Dónde lo encontramos? · ¿Para qué se utiliza? · Audio del estudiante · Video corto.
+      </div>
+
+      <p>La intención es que el producto institucional pueda crecer cada año: nuevos estudiantes pueden mejorar fichas, corregir pronunciaciones, incorporar modelos, producir nuevos videos o ampliar los contenidos científicos.</p>
+    </div>
+
+    <div class="tab-panel" id="c-crono">
+      <h3>Cronograma base</h3>
+      <ul>
+        <li><b>Fase 1 · Jornada 1:</b> Introducción y motivación — reconocimiento inicial de vocabulario.</li>
+        <li><b>Fase 2 · Jornadas 1–2:</b> Investigación bilingüe — información consultada y organizada.</li>
+        <li><b>Fase 3 · Jornadas 2–3:</b> Diseño de la tabla — tabla periódica bilingüe en elaboración.</li>
+        <li><b>Fase 4 · Jornada 3:</b> Práctica del vocabulario — pronunciación y frases sencillas.</li>
+        <li><b>Fase 5 · Jornada 4:</b> Socialización a docentes — presentación del producto.</li>
+        <li><b>Fase 6 · Cierre:</b> Reflexión y evaluación — autoevaluación y evidencias de aprendizaje.</li>
+      </ul>
+
+      <p>Las extensiones con QR, audios, videos y diseño 3D pueden implementarse posteriormente de manera progresiva, sin alterar la secuencia pedagógica inicial.</p>
+    </div>
+
+    <div class="tab-panel" id="c-recursos">
+      <h3>Recursos materiales</h3>
+      <ul>
+        <li>Cartulina por grupo o equipo de trabajo.</li>
+        <li>Regla, lápiz, borrador, marcadores, colores y resaltadores.</li>
+        <li>Tijeras y pegante según la estrategia de elaboración.</li>
+        <li>Modelos de referencia de la tabla periódica.</li>
+        <li>Diccionario español–inglés, material de consulta o recursos digitales autorizados.</li>
+        <li>Cuaderno o guía para registrar vocabulario y avances.</li>
+        <li>Celular, computador o proyector cuando estén disponibles.</li>
+      </ul>
+
+      <h3>Recursos humanos y roles</h3>
+      <p>Los docentes de Ciencias Naturales – Química e Inglés actúan como orientadores. Los estudiantes asumen funciones de investigadores, diseñadores, organizadores y expositores; los demás docentes pueden participar como público en la socialización.</p>
+
+      <p><b>Para la proyección interactiva:</b> pueden incorporarse generadores de códigos QR, grabación de audio y video, herramientas básicas de edición y, cuando exista disponibilidad, software e impresión 3D.</p>
+    </div>
+
+    <div class="tab-panel" id="c-resultados">
+      <h3>Resultados esperados</h3>
+      <ul>
+        <li>Tabla periódica bilingüe organizada y legible con número atómico, símbolo y nombre en ambos idiomas.</li>
+        <li>Ampliación del vocabulario científico básico en inglés.</li>
+        <li>Mejor correspondencia entre nombres, símbolos y números atómicos.</li>
+        <li>Fortalecimiento de pronunciación, participación y comunicación oral.</li>
+        <li>Desarrollo de investigación, organización de información, creatividad y trabajo colaborativo.</li>
+        <li>Aprendizajes interdisciplinarios significativos mediante la integración de química e inglés.</li>
+      </ul>
+
+      <h3>Impacto esperado</h3>
+      <p><b>En el aula:</b> uso funcional del inglés dentro de un contenido de química.</p>
+      <p><b>En la escuela:</b> producto pedagógico para socialización y consulta.</p>
+
+      <div class="interactive-box">
+        <strong>Proyección:</strong> al transformarse en instalación interactiva bilingüe, la tabla puede convertirse en un recurso institucional permanente y ampliable, construido por varias generaciones de estudiantes.
+      </div>
+    </div>
+
+    <div class="tab-panel" id="c-evaluacion">
+      <h3>Evaluación formativa</h3>
+      <p>La evaluación considera tanto el aprendizaje químico como el uso funcional del inglés, valorando investigación, trabajo colaborativo, precisión de la información, presentación del producto y capacidad de comunicar vocabulario científico.</p>
+
+      <h3>Criterios</h3>
+      <ul>
+        <li>Identificación correcta de elementos, símbolos y números atómicos.</li>
+        <li>Correspondencia entre nombres en español e inglés.</li>
+        <li>Organización, creatividad y legibilidad de la tabla.</li>
+        <li>Pronunciación y uso de vocabulario básico en inglés.</li>
+        <li>Participación y trabajo colaborativo.</li>
+        <li>Claridad y seguridad durante la socialización.</li>
+        <li>Reflexión individual sobre los aprendizajes alcanzados.</li>
+      </ul>
+
+      <h3>Herramientas y evidencias</h3>
+      <ul>
+        <li>Rúbrica o ficha de evaluación.</li>
+        <li>Autoevaluación.</li>
+        <li>Lista de chequeo.</li>
+        <li>Fotografías del proceso.</li>
+        <li>Tabla periódica terminada.</li>
+        <li>Registros de vocabulario y consultas.</li>
+        <li>Producciones escritas.</li>
+        <li>Videos o fotografías de la socialización cuando estén autorizados.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="c-evidencias">
+      <h3>Evidencias del proceso</h3>
+      <div class="evidence-empty">
+        <b>Espacio preparado para cargar evidencias</b>
+        Aún no se aportaron fotografías o videos de este Centro de Interés en esta actualización. Cuando sean entregados, podrán incorporarse aquí sin modificar la estructura del proyecto.
+      </div>
+
+      <h3 style="margin-top:26px">Evidencias previstas</h3>
+      <ul>
+        <li>Proceso de investigación y organización de información.</li>
+        <li>Construcción de la tabla periódica bilingüe.</li>
+        <li>Práctica de pronunciación y vocabulario científico.</li>
+        <li>Socialización del producto.</li>
+        <li>Fichas digitales y códigos QR.</li>
+        <li>Audios y videos de estudiantes como “embajadores de elementos”.</li>
+        <li>Modelos o piezas elaboradas mediante diseño e impresión 3D, si se implementan.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section class="center-detail alt" id="centro-8">
+  <div class="container">
+    <div class="kicker" style="color:var(--pita)">Centro de Interés 8 · Proyecto consolidado</div>
+    <h2>Pitágoras en nuestro territorio: matemáticas que resuelven problemas</h2>
+
+    <div class="center-hero">
+      <div class="center-cover pita">
+        <span class="ci-number">Matemáticas · STEM · territorio · diseño</span>
+        <h3>Teorema de Pitágoras</h3>
+        <p>Comprender la relación entre los lados de un triángulo rectángulo y utilizarla para resolver situaciones reales de la escuela y del entorno.</p>
+      </div>
+
+      <div class="panel">
+        <h3>Ficha rápida</h3>
+        <div class="facts">
+          <div class="fact pita"><small>Docente líder</small><b>Rosa Elia Ortiz Murcia</b></div>
+          <div class="fact pita"><small>Área</small><b>Matemáticas</b></div>
+          <div class="fact pita"><small>Sede</small><b>Internado · I.E. Charco Trece</b></div>
+          <div class="fact pita"><small>Población</small><b>Estudiantes del Internado Charco Trece</b></div>
+        </div>
+
+        <div class="product-card pita-product">
+          <b>Producto articulador</b><br>
+          <strong>“Pitágoras en nuestro territorio: Matemáticas que resuelven problemas”</strong>
+          <p>Una muestra con estaciones de problemas reales, cálculos, representación en GeoGebra, prototipos o maquetas y códigos QR con explicaciones elaboradas por los estudiantes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs pita-tabs" data-tabs="p">
+      <button class="tab-btn active" data-target="p-descripcion">Descripción</button>
+      <button class="tab-btn" data-target="p-objetivos">Objetivos</button>
+      <button class="tab-btn" data-target="p-metodo">Metodología</button>
+      <button class="tab-btn" data-target="p-territorio">Problemas del territorio</button>
+      <button class="tab-btn" data-target="p-producto">Producto STEM</button>
+      <button class="tab-btn" data-target="p-crono">Cronograma</button>
+      <button class="tab-btn" data-target="p-recursos">Recursos</button>
+      <button class="tab-btn" data-target="p-evaluacion">Evaluación</button>
+      <button class="tab-btn" data-target="p-evidencias">Evidencias</button>
+    </div>
+
+    <div class="tab-panel active" id="p-descripcion">
+      <h3>Planteamiento pedagógico</h3>
+      <p>El proyecto busca que los estudiantes comprendan que, en todo triángulo rectángulo, el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos y que esta relación puede observarse, representarse y utilizarse en situaciones cotidianas.</p>
+
+      <p>La propuesta prioriza diagramas, experiencias concretas, construcción de modelos, resolución de problemas y herramientas digitales para que el estudiante vaya más allá de memorizar una fórmula y comprenda para qué sirve.</p>
+
+      <div class="formula-card">
+        <span class="formula">a² + b² = c²</span>
+        <span>En un triángulo rectángulo, la suma de los cuadrados de los catetos equivale al cuadrado de la hipotenusa.</span>
+      </div>
+
+      <div class="stem-box">
+        <strong>Enfoque consolidado:</strong>
+        aprender el Teorema de Pitágoras mediante problemas auténticos de Charco Trece, integrando medición, cálculo, representación, diseño, construcción y comunicación matemática.
+      </div>
+    </div>
+
+    <div class="tab-panel" id="p-objetivos">
+      <h3>Objetivo principal</h3>
+      <p><b>Demostrar a través de experiencias y modelos el Teorema de Pitágoras, explicar cómo funciona y utilizarlo para resolver situaciones reales relacionadas con triángulos rectángulos.</b></p>
+
+      <h3>Objetivos específicos</h3>
+      <ul>
+        <li>Explicar de manera comprensible cómo funciona el Teorema de Pitágoras.</li>
+        <li>Diseñar modelos a escala que faciliten la comprensión de la relación entre catetos e hipotenusa.</li>
+        <li>Relacionar el teorema con aplicaciones prácticas de la vida cotidiana.</li>
+        <li>Resolver problemas de medición y distancia en contextos del territorio.</li>
+        <li>Utilizar herramientas digitales para comprobar construcciones y cálculos.</li>
+        <li>Promover curiosidad, razonamiento, colaboración y reflexión sobre el aprendizaje.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="p-metodo">
+      <h3>Metodología</h3>
+      <p>La propuesta utiliza metodologías activas y significativas con materiales concretos, problemas contextualizados, trabajo colaborativo, construcciones geométricas y evaluación formativa.</p>
+
+      <div class="route pita-route">
+        <div><strong>1. Explorar</strong>Reconocer triángulos rectángulos y situaciones donde aparecen.</div>
+        <div><strong>2. Medir</strong>Tomar datos de estructuras, recorridos, diagonales o espacios de la institución.</div>
+        <div><strong>3. Calcular</strong>Aplicar el Teorema de Pitágoras de manera manual.</div>
+        <div><strong>4. Comprobar</strong>Usar GeoGebra u otra herramienta para validar los resultados.</div>
+        <div><strong>5. Diseñar</strong>Representar digitalmente la solución o el modelo.</div>
+        <div><strong>6. Construir</strong>Elaborar una maqueta, prototipo o modelo demostrativo.</div>
+        <div><strong>7. Explicar</strong>Comunicar el problema, procedimiento y resultado.</div>
+        <div><strong>8. Compartir</strong>Presentar el producto en una muestra con QR y evidencias.</div>
+      </div>
+
+      <p style="margin-top:18px"><b>Recursos metodológicos contemplados:</b> bloques, palillos, papel cuadriculado, demostraciones visuales, GeoGebra, simulaciones, problemas de construcción, navegación o deporte y proyectos grupales.</p>
+    </div>
+
+    <div class="tab-panel" id="p-territorio">
+      <h3>¿Dónde aparece Pitágoras en Charco Trece?</h3>
+      <p>Los estudiantes pueden salir a diferentes espacios de la institución para identificar problemas que requieran triángulos rectángulos y medición indirecta.</p>
+
+      <div class="territory-grid">
+        <div class="territory-card"><b>Alturas</b>Estimar la altura de una estructura o elemento del entorno mediante distancias medibles.</div>
+        <div class="territory-card"><b>Rampas</b>Calcular la longitud necesaria de una rampa a partir de altura y distancia horizontal.</div>
+        <div class="territory-card"><b>Diagonales</b>Determinar diagonales de patios, salones, terrenos, carteles o estructuras.</div>
+        <div class="territory-card"><b>Espacios deportivos</b>Analizar trayectorias, distancias y desplazamientos en canchas o zonas de actividad física.</div>
+      </div>
+
+      <div class="stem-box">
+        <strong>Pregunta orientadora:</strong>
+        ¿Cómo podemos utilizar las matemáticas para medir, diseñar o resolver problemas reales de nuestra institución y nuestro territorio?
+      </div>
+    </div>
+
+    <div class="tab-panel" id="p-producto">
+      <h3>Producto final STEM</h3>
+      <p>El proyecto puede evolucionar de una maqueta aislada hacia un recurso didáctico institucional construido por los propios estudiantes.</p>
+
+      <div class="route pita-route">
+        <div><strong>Problema real</strong>Una situación auténtica de Charco Trece.</div>
+        <div><strong>Medición</strong>Datos obtenidos por el equipo en el lugar.</div>
+        <div><strong>Cálculo matemático</strong>Aplicación del Teorema de Pitágoras.</div>
+        <div><strong>GeoGebra</strong>Comprobación y representación de la solución.</div>
+        <div><strong>Diseño digital</strong>Modelado de piezas o componentes cuando sea pertinente.</div>
+        <div><strong>Prototipo</strong>Maqueta, rampa, estructura o modelo demostrativo.</div>
+        <div><strong>QR</strong>Acceso a una explicación audiovisual creada por estudiantes.</div>
+        <div><strong>Estación de feria</strong>Espacio para que visitantes vean, manipulen y comprueben la matemática.</div>
+      </div>
+
+      <div class="stem-box">
+        <strong>Posible recurso permanente:</strong>
+        un modelo demostrativo interactivo de <b>a² + b² = c²</b> con piezas desmontables o móviles. Cuando los recursos lo permitan, algunos componentes podrían diseñarse digitalmente e imprimirse en 3D.
+      </div>
+    </div>
+
+    <div class="tab-panel" id="p-crono">
+      <h3>Cronograma planteado en el proyecto</h3>
+      <ul>
+        <li><b>2 al 7 de septiembre:</b> socialización del proyecto con los estudiantes.</li>
+        <li><b>9 al 27 de septiembre:</b> explicación y ejercicios prácticos sobre el Teorema de Pitágoras.</li>
+        <li><b>Primera semana de octubre:</b> diseño a escala del modelo del Teorema de Pitágoras.</li>
+        <li><b>Tercera semana de octubre:</b> construcción del triángulo rectángulo según diseño y cuadrados correspondientes.</li>
+      </ul>
+
+      <p>La fase de consolidación puede incorporar posteriormente mediciones del territorio, representación en GeoGebra, construcción de prototipos, QR y socialización en estaciones.</p>
+    </div>
+
+    <div class="tab-panel" id="p-recursos">
+      <h3>Recursos</h3>
+      <ul>
+        <li>Materiales concretos: bloques, palillos, cartón, papel cuadriculado y elementos para maquetas.</li>
+        <li>Instrumentos de medición: reglas, cintas métricas y escuadras.</li>
+        <li>Calculadora y cuaderno de campo.</li>
+        <li>GeoGebra u otras aplicaciones de geometría dinámica.</li>
+        <li>Computador o tableta cuando estén disponibles.</li>
+        <li>Materiales para prototipos y modelos demostrativos.</li>
+      </ul>
+
+      <h3>Proyección tecnológica</h3>
+      <p>Los cálculos se realizan inicialmente de forma manual y luego pueden comprobarse con GeoGebra. Algunos componentes pueden diseñarse en software de modelado y, cuando exista disponibilidad, llevarse a impresión 3D. Los códigos QR pueden enlazar videos donde los estudiantes expliquen el problema, las medidas, el procedimiento matemático y la solución.</p>
+    </div>
+
+    <div class="tab-panel" id="p-evaluacion">
+      <h3>Evaluación formativa</h3>
+      <p>El proyecto plantea el uso de rúbricas, participación del estudiante en su propia evaluación y valoración del trabajo colaborativo.</p>
+
+      <h3>Criterios</h3>
+      <ul>
+        <li>Comprensión de los conceptos básicos del Teorema de Pitágoras.</li>
+        <li>Aplicación correcta del teorema en diferentes situaciones.</li>
+        <li>Resolución eficaz de problemas y uso de estrategias matemáticas.</li>
+        <li>Creatividad y calidad del modelo o prototipo.</li>
+        <li>Trabajo colaborativo.</li>
+        <li>Participación, curiosidad e interés por las matemáticas.</li>
+        <li>Capacidad para reflexionar sobre el propio aprendizaje.</li>
+        <li>Claridad al explicar el problema, procedimiento y resultado.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="p-evidencias">
+      <h3>Evidencias del proceso</h3>
+      <div class="evidence-empty-pita">
+        <b>Espacio listo para fotografías y videos</b>
+        En esta actualización no se recibieron evidencias audiovisuales específicas del proyecto. La galería queda preparada para incorporarlas cuando sean entregadas.
+      </div>
+
+      <h3 style="margin-top:26px">Evidencias previstas</h3>
+      <ul>
+        <li>Socialización inicial del proyecto.</li>
+        <li>Ejercicios y mediciones realizadas por los estudiantes.</li>
+        <li>Bocetos y diseños a escala.</li>
+        <li>Construcción de triángulos, cuadrados, rampas o maquetas.</li>
+        <li>Representaciones en GeoGebra.</li>
+        <li>Modelos demostrativos o piezas impresas en 3D, si se implementan.</li>
+        <li>Videos asociados a códigos QR.</li>
+        <li>Estaciones de exposición y socialización final.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section class="center-detail" id="centro-9">
+  <div class="container">
+    <div class="kicker" style="color:var(--pal)">Centro de Interés 9 · Proyecto consolidado</div>
+    <h2>Aprendo, leo y me divierto: exploradores de palabras</h2>
+
+    <div class="center-hero">
+      <div class="center-cover palabras" style="--palabras-hero-bg:
+        linear-gradient(145deg,rgba(127,58,166,.90),rgba(232,91,157,.76),rgba(61,143,131,.70)),
+        url('imagen_063.jpg');
+        background-size:cover;background-position:center;">
+        <span class="ci-number">Lectura · escritura · vocabulario · juego</span>
+        <h3>Exploradores de palabras</h3>
+        <p>Una ruta lúdica para descubrir, leer, escribir, pronunciar, comprender y crear con palabras.</p>
+      </div>
+
+      <div class="panel">
+        <h3>Ficha rápida</h3>
+        <div class="facts">
+          <div class="fact palabras"><small>Docente líder</small><b>Marisol Devia Castro</b></div>
+          <div class="fact palabras"><small>Sede</small><b>Internado Charco Trece</b></div>
+          <div class="fact palabras"><small>Población</small><b>Preescolar, primero y segundo</b></div>
+          <div class="fact palabras"><small>Área central</small><b>Lenguaje y lectoescritura</b></div>
+        </div>
+
+        <div class="product-card palabras-product">
+          <b>Producto articulador</b><br>
+          <strong>El gran diccionario divertido de Charco Trece</strong>
+          <p>Una colección creada por los estudiantes con palabras del territorio, dibujos, separación silábica, significados, oraciones, pronunciaciones, pequeños relatos y posibilidades de QR, audio, libro digital y material manipulativo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs palabras-tabs" data-tabs="mar">
+      <button class="tab-btn active" data-target="mar-descripcion">Descripción</button>
+      <button class="tab-btn" data-target="mar-objetivos">Objetivos</button>
+      <button class="tab-btn" data-target="mar-ruta">Ruta de aprendizaje</button>
+      <button class="tab-btn" data-target="mar-actividades">Actividades</button>
+      <button class="tab-btn" data-target="mar-producto">Producto final</button>
+      <button class="tab-btn" data-target="mar-tecnologia">Tecnología</button>
+      <button class="tab-btn" data-target="mar-evaluacion">Evaluación</button>
+      <button class="tab-btn" data-target="mar-evidencias">Evidencias</button>
+    </div>
+
+    <div class="tab-panel active" id="mar-descripcion">
+      <h3>Justificación</h3>
+      <p>El proyecto surge de la necesidad de fortalecer el vocabulario, la correcta escritura, la ortografía, la conciencia fonológica, la pronunciación y la comprensión lectora mediante actividades que permitan a los estudiantes aprender de forma lúdica.</p>
+
+      <p>La propuesta reconoce que el deletreo, la formación de palabras y el trabajo sistemático con el lenguaje favorecen la seguridad del estudiante para decodificar palabras, expresarse, ampliar su léxico y comunicarse con mayor claridad. Al mismo tiempo, incorpora experiencias de juego que hacen que el aprendizaje sea participativo y significativo.</p>
+
+      <div class="word-chips">
+        <span class="word-chip">leer</span>
+        <span class="word-chip">escribir</span>
+        <span class="word-chip">deletrear</span>
+        <span class="word-chip">comprender</span>
+        <span class="word-chip">jugar</span>
+        <span class="word-chip">crear</span>
+        <span class="word-chip">pronunciar</span>
+        <span class="word-chip">compartir</span>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="mar-objetivos">
+      <h3>Objetivo general</h3>
+      <p><b>Fortalecer en los estudiantes las competencias de escritura como herramienta de comunicación y su relación con la promoción de la lectura mediante diferentes actividades lúdicas y pedagógicas.</b></p>
+
+      <h3>Objetivos específicos</h3>
+      <ul>
+        <li>Desarrollar competencias de escritura relacionadas con la comunicación y la promoción de la lectura.</li>
+        <li>Mejorar el vocabulario y favorecer una comunicación más eficiente.</li>
+        <li>Aumentar la comprensión lectora mediante un conocimiento más profundo de las palabras.</li>
+        <li>Reconocer fonemas de uso cotidiano para mejorar escritura y pronunciación.</li>
+        <li>Ampliar el vocabulario cotidiano.</li>
+        <li>Fortalecer habilidades de estudio y comprensión.</li>
+        <li>Aprender jugando.</li>
+        <li>Reconocer errores lingüísticos y aprender a corregirlos.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="mar-ruta">
+      <h3>Ruta de aprendizaje consolidada</h3>
+      <p>Las actividades existentes se organizan como una secuencia que permite evidenciar progresión en el aprendizaje.</p>
+
+      <div class="route palabras-route">
+        <div><strong>1. Exploro palabras</strong>Reconozco palabras de mi escuela, familia, territorio y vida cotidiana.</div>
+        <div><strong>2. Juego con palabras</strong>Utilizo loterías, memoramas, crucigramas y alfabeto móvil.</div>
+        <div><strong>3. Construyo palabras</strong>Formo, separo, deletreo y escribo palabras.</div>
+        <div><strong>4. Comprendo</strong>Busco significados, relaciono imágenes y creo oraciones.</div>
+        <div><strong>5. Creo con palabras</strong>Produzco dibujos, frases, pequeños textos e historias.</div>
+        <div><strong>6. Comparto</strong>Leo, explico, pronuncio y socializo mis producciones.</div>
+      </div>
+
+      <div class="dictionary-box">
+        <strong>Idea central:</strong>
+        pasar de actividades aisladas a una ruta visible de aprendizaje donde el estudiante pueda mostrar qué sabía al comenzar, qué fue construyendo y qué logró producir.
+      </div>
+    </div>
+
+    <div class="tab-panel" id="mar-actividades">
+      <h3>Actividades del proyecto</h3>
+      <div class="route palabras-route">
+        <div><strong>Alfabeto móvil</strong>Formación de palabras a partir de letras manipulables.</div>
+        <div><strong>Me divierto escribiendo</strong>Dictados periódicos y revisión de ortografía.</div>
+        <div><strong>Resuelve crucijuegos</strong>Crucigramas con imágenes y vocabulario contextualizado.</div>
+        <div><strong>¡Qué alegría escribir!</strong>Construcción y corrección de oraciones.</div>
+        <div><strong>Jugando memorama</strong>Relación de parejas, imágenes y palabras mediante memoria visual.</div>
+        <div><strong>Lotería</strong>Juego de lectura y reconocimiento con participación familiar.</div>
+      </div>
+
+      <p style="margin-top:18px">Estas estrategias permiten trabajar lectura, escritura, pronunciación, ortografía, vocabulario, memoria, atención y participación familiar desde experiencias cercanas a los niños.</p>
+    </div>
+
+    <div class="tab-panel" id="mar-producto">
+      <h3>El gran diccionario divertido de Charco Trece</h3>
+      <p>El producto final articula las actividades del proyecto en una construcción acumulativa y visible creada por los estudiantes.</p>
+
+      <h3>Cada palabra puede incluir</h3>
+      <ul>
+        <li>Palabra escrita.</li>
+        <li>Separación en sílabas.</li>
+        <li>Dibujo elaborado por el estudiante.</li>
+        <li>Significado expresado con sus propias palabras.</li>
+        <li>Una oración de ejemplo.</li>
+        <li>Pronunciación.</li>
+        <li>Para los estudiantes que puedan hacerlo, una pequeña historia o ejemplo ampliado.</li>
+      </ul>
+
+      <h3>Categorías sugeridas</h3>
+      <div class="word-chips">
+        <span class="word-chip">Palabras de mi escuela</span>
+        <span class="word-chip">Palabras del campo</span>
+        <span class="word-chip">Animales de mi territorio</span>
+        <span class="word-chip">Palabras que usamos en familia</span>
+        <span class="word-chip">Palabras nuevas que aprendí</span>
+      </div>
+
+      <div class="dictionary-box">
+        <strong>Proyección:</strong>
+        cada año pueden agregarse nuevas palabras, dibujos, audios y pequeños textos hasta consolidar un diccionario institucional construido por varias generaciones de estudiantes.
+      </div>
+    </div>
+
+    <div class="tab-panel" id="mar-tecnologia">
+      <h3>Tecnología al servicio de la lectoescritura</h3>
+      <p>La incorporación tecnológica se plantea como complemento de la experiencia pedagógica, no como sustitución del juego, la escritura manual o la lectura.</p>
+
+      <div class="route palabras-route">
+        <div><strong>Código QR</strong>Cada palabra puede enlazar un audio grabado por el propio estudiante.</div>
+        <div><strong>Pronunciación</strong>“Mi palabra es mariposa. Se escribe M-A-R-I-P-O-S-A...”</div>
+        <div><strong>Galería digital</strong>Digitalización de dibujos, fichas y producciones.</div>
+        <div><strong>Libro virtual</strong>Construcción progresiva del diccionario digital.</div>
+        <div><strong>Página web</strong>Publicación de las palabras y producciones destacadas.</div>
+        <div><strong>Diseño e impresión 3D</strong>Letras, sílabas y fichas manipulativas para formar palabras y frases.</div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="mar-evaluacion">
+      <h3>Evaluación formativa</h3>
+      <p>El proyecto plantea una evaluación continua y participativa que permita hacer ajustes durante su ejecución. Para fortalecer el seguimiento, se propone comparar una línea de base inicial con evidencias finales del aprendizaje.</p>
+
+      <div class="baseline-grid">
+        <div><b>Reconocimiento</b>¿Cuántas palabras reconoce?</div>
+        <div><b>Escritura</b>¿Cuántas puede escribir correctamente?</div>
+        <div><b>Construcción</b>¿Puede formar una oración?</div>
+        <div><b>Comprensión</b>¿Comprende lo que lee?</div>
+        <div><b>Oralidad</b>¿Puede explicar oralmente una palabra?</div>
+        <div><b>Progreso</b>¿Qué mejoró entre el inicio y el cierre?</div>
+      </div>
+
+      <h3>Instrumentos sugeridos</h3>
+      <ul>
+        <li>Lista de cotejo por estudiante.</li>
+        <li>Registro de dictados y correcciones.</li>
+        <li>Portafolio de palabras, dibujos y producciones.</li>
+        <li>Autoevaluación oral o gráfica.</li>
+        <li>Registro fotográfico de actividades.</li>
+        <li>Comparación de línea de base y cierre.</li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="mar-evidencias">
+      <h3>Galería del proceso</h3>
+      <p>Las evidencias muestran actividades de lectura, escritura, desarrollo de guías, trabajo individual y colaborativo, uso de recursos visuales y experiencias de aprendizaje dentro y fuera del aula.</p>
+
+      <div class="gallery">
+        <button class="gallery-item" type="button" onclick="openLightbox('marisol1')">
+      <img id="marisol1" src="imagen_064.jpg" alt="Evidencia del Centro de Interés Aprendo, leo y me divierto: exploradores de palabras">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('marisol2')">
+      <img id="marisol2" src="imagen_065.jpg" alt="Evidencia del Centro de Interés Aprendo, leo y me divierto: exploradores de palabras">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('marisol3')">
+      <img id="marisol3" src="imagen_063.jpg" alt="Evidencia del Centro de Interés Aprendo, leo y me divierto: exploradores de palabras">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('marisol4')">
+      <img id="marisol4" src="imagen_066.jpg" alt="Evidencia del Centro de Interés Aprendo, leo y me divierto: exploradores de palabras">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('marisol5')">
+      <img id="marisol5" src="imagen_067.jpg" alt="Evidencia del Centro de Interés Aprendo, leo y me divierto: exploradores de palabras">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('marisol6')">
+      <img id="marisol6" src="imagen_068.jpg" alt="Evidencia del Centro de Interés Aprendo, leo y me divierto: exploradores de palabras">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('marisol7')">
+      <img id="marisol7" src="imagen_069.jpg" alt="Evidencia del Centro de Interés Aprendo, leo y me divierto: exploradores de palabras">
+    </button>
+<button class="gallery-item" type="button" onclick="openLightbox('marisol8')">
+      <img id="marisol8" src="imagen_070.jpg" alt="Evidencia del Centro de Interés Aprendo, leo y me divierto: exploradores de palabras">
+    </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="people" id="talento">
+  <div class="container">
+    <div class="kicker">Base institucional</div>
+    <h2>Talento humano</h2>
+    <p class="intro">Directorio básico para relacionar cada Centro de Interés con la sede, el docente líder y los actores que acompañan su desarrollo. Para publicación web se muestran únicamente nombre, sede y cargo.</p>
+    <div class="table-tools"><input id="staffSearch" type="search" placeholder="Buscar docente, sede o cargo…" aria-label="Buscar talento humano"></div>
+    <div class="staff-wrap">
+      <table id="staffTable">
+        <thead><tr><th>Docente</th><th>Sede</th><th>Cargo</th></tr></thead>
+        <tbody><tr><td>José Orlando Lizarazo Gelvez</td><td>Principal Internado Charco Trece</td><td>Rector</td></tr>
+<tr><td>Lucas Pachón Baquero</td><td>La Argentina</td><td>Docente de aula</td></tr>
+<tr><td>Mayerly Katerin Clavijo</td><td>El Diamante</td><td>Docente de aula</td></tr>
+<tr><td>Nancy Rey de Carrillo</td><td>Brisas del Güejar</td><td>Docente de aula</td></tr>
+<tr><td>Lida Murillo Turner</td><td>Alto Cunimia</td><td>Docente de aula</td></tr>
+<tr><td>Anderson Olmos Palma</td><td>Nuestra Señora de la Paz</td><td>Docente de aula</td></tr>
+<tr><td>Yenny Sirley Castillo Rivas</td><td>Principal Internado Charco Trece</td><td>Docente de aula</td></tr>
+<tr><td>Marisol Devia Castro</td><td>Principal Internado Charco Trece</td><td>Docente de aula</td></tr>
+<tr><td>José David Osorio Londoño</td><td>Principal Internado Charco Trece</td><td>Docente de aula</td></tr>
+<tr><td>Yeimmy Jacaira Monroy Clavijo</td><td>Principal Internado Charco Trece</td><td>Docente de aula</td></tr>
+<tr><td>Sindy Johana Amezquita Cortes</td><td>Principal Internado Charco Trece</td><td>Docente orientadora</td></tr>
+<tr><td>Rosa Elia Ortiz Murcia</td><td>Principal Internado Charco Trece</td><td>Docente de aula</td></tr>
+<tr><td>Yomaira Guarnizo León</td><td>Principal Internado Charco Trece</td><td>Docente de aula</td></tr>
+<tr><td>Raul Fernando Torres Cuellar</td><td>Principal Internado Charco Trece</td><td>Docente de aula</td></tr>
+<tr><td>Diana Patricia Matiz Cano</td><td>Principal Internado Charco Trece</td><td>Docente de aula</td></tr>
+<tr><td>Darley Steven Rosero Moncayo</td><td>Principal Internado Charco Trece</td><td>Docente tutor PTAFI 3.0</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="docs" id="insumos">
+  <div class="container">
+    <div class="kicker">Repositorio de insumos</div>
+    <h2>Documentos que sustentan el sitio</h2>
+    <p class="intro">Esta área identifica los documentos base que sustentan cada Centro de Interés. En la versión publicada se pueden vincular directamente desde una carpeta institucional de Google Drive.</p>
+    <div class="grid-3">
+      <div class="doc-card"><span class="type">Estructura base</span><h3>Ficha de estructura de Centros de Interés</h3><p>Define los campos comunes que debe contener cada proyecto.</p></div>
+      <div class="doc-card"><span class="type">Talento humano</span><h3>Data docente</h3><p>Relaciona docentes, sedes y cargos de la institución.</p></div>
+      <div class="doc-card"><span class="type">Centro 1</span><h3>Ficha Guardianes de Historias</h3><p>Proyecto base desarrollado por la docente líder.</p></div>
+      <div class="doc-card"><span class="type">Centro 2</span><h3>Semilleros Deportivos: Jugando Aprendo y Crezco</h3><p>Ficha del Centro de Interés de la Sede Nuestra Señora de la Paz.</p></div>
+      <div class="doc-card"><span class="type">Centro 3</span><h3>Tecno-rural robótica</h3><p>Ficha del proyecto de robótica y programación con proyección hacia el sector agropecuario.</p></div>
+      <div class="doc-card"><span class="type">Centro 4</span><h3>Acepto mis emociones para vivir en paz</h3><p>Ficha de fortalecimiento socioemocional, lectura, empatía, autorregulación y convivencia.</p></div>
+
+      <div class="doc-card">
+        <span class="type">Centro 5</span>
+        <h3>Reciclando con jabón</h3>
+        <p>Ficha del Centro de Interés de la Sede El Diamante, con proyección ambiental, interdisciplinar y emprendedora.</p>
+      </div>
+
+      <div class="doc-card"><span class="type">Centro 6</span><h3>Sembrando vida, conocimiento y territorio</h3><p>Proyecto de Principios Agropecuarios con lombricultivo, compostaje, abonos orgánicos, huerta escolar y cultivos de plátano y yuca.</p></div>
+
+      <div class="doc-card">
+        <span class="type">Centro 7</span>
+        <h3>Chemistry in English</h3>
+        <p>Proyecto interdisciplinario de Química e Inglés orientado a la construcción y socialización de una tabla periódica bilingüe.</p>
+      </div>
+
+      <div class="doc-card">
+        <span class="type">Centro 8</span>
+        <h3>Pitágoras en nuestro territorio</h3>
+        <p>Proyecto de aula de Matemáticas orientado a comprender y aplicar el Teorema de Pitágoras mediante modelos, problemas reales, GeoGebra y prototipos.</p>
+      </div>
+
+      <div class="doc-card">
+        <span class="type">Centro 9</span>
+        <h3>Aprendo, leo y me divierto: exploradores de palabras</h3>
+        <p>Proyecto de lectoescritura de la profe Marisol Devia Castro basado en vocabulario, ortografía, deletreo, juegos y creación con palabras.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pta-section" id="pta">
+  <div class="container">
+    <div class="pta-grid">
+      <div class="pta-logo-large" aria-label="Identificador PTA FI 3.0">
+        <div>
+          <strong>PTA/FI 3.0</strong>
+          <span>Programa de Tutorías para el Aprendizaje y la Formación Integral</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="kicker">Acompañamiento pedagógico</div>
+        <h2>PTA/FI 3.0 en la I.E. Charco Trece</h2>
+        <p class="pta-intro">El acompañamiento se orienta a fortalecer las prácticas pedagógicas, apoyar la organización de los Centros de Interés y favorecer su articulación con las apuestas institucionales de formación integral.</p>
+        <p><strong>Docente tutor:</strong> Darley Steven Rosero Moncayo</p>
+
+        <div class="role-grid">
+          <div class="role">🤝 Acompañar a docentes</div>
+          <div class="role">🧩 Articular iniciativas</div>
+          <div class="role">🌱 Fortalecer Centros de Interés</div>
+          <div class="role">📣 Visibilizar experiencias</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div><b>I.E. Internado Charco Trece</b><br>Puerto Lleras – Meta</div>
+    <div>Centros de Interés · Repositorio pedagógico · PTA/FI 3.0</div>
+    <div class="footer-credit">Creado por <strong>PTAFI 3.0</strong> · Steven Rosero Moncayo</div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button type="button" onclick="closeLightbox(event)">×</button>
+  <img id="lightboxImg" alt="Evidencia ampliada">
+</div>
+
+<script>
+  // dropdowns del banner
+  const navDropdowns = [...document.querySelectorAll('.nav-dropdown')];
+
+  navDropdowns.forEach(dropdown=>{
+    const btn = dropdown.querySelector('.nav-dropbtn');
+    if(!btn) return;
+
+    btn.addEventListener('click', e=>{
+      e.stopPropagation();
+
+      navDropdowns.forEach(other=>{
+        if(other !== dropdown){
+          other.classList.remove('is-open');
+          const otherBtn = other.querySelector('.nav-dropbtn');
+          if(otherBtn) otherBtn.setAttribute('aria-expanded','false');
+        }
+      });
+
+      const open = dropdown.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true':'false');
+    });
+  });
+
+  document.addEventListener('click', e=>{
+    navDropdowns.forEach(dropdown=>{
+      if(!dropdown.contains(e.target)){
+        dropdown.classList.remove('is-open');
+        const btn = dropdown.querySelector('.nav-dropbtn');
+        if(btn) btn.setAttribute('aria-expanded','false');
+      }
+    });
+  });
+
+  // tabs
+  document.querySelectorAll('.tabs').forEach(group=>{
+    group.querySelectorAll('.tab-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const prefix=group.dataset.tabs;
+        group.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll(`[id^="${prefix}-"]`).forEach(p=>p.classList.remove('active'));
+        const target=document.getElementById(btn.dataset.target);
+        if(target) target.classList.add('active');
+      });
+    });
+  });
+
+  // staff search
+  const search=document.getElementById('staffSearch');
+  if(search){
+    search.addEventListener('input',()=>{
+      const q=search.value.toLowerCase().trim();
+      document.querySelectorAll('#staffTable tbody tr').forEach(row=>{
+        row.style.display=row.innerText.toLowerCase().includes(q) ? '' : 'none';
+      });
+    });
+  }
+
+  // gallery lightbox
+  function openLightbox(id){
+    const img=document.getElementById(id);
+    if(!img) return;
+    document.getElementById('lightboxImg').src=img.src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox(e){
+    if(e) e.stopPropagation();
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') document.getElementById('lightbox').classList.remove('open'); });
+
+  // =========================================================
+  // Galerías tipo libro
+  // =========================================================
+  function initPhotoBooks(){
+    document.querySelectorAll('.gallery').forEach((gallery, bookIndex)=>{
+      if(gallery.dataset.bookReady === '1') return;
+
+      const pages=[...gallery.querySelectorAll('.gallery-item')];
+      if(pages.length < 2) return;
+
+      gallery.dataset.bookReady='1';
+      gallery.classList.add('photo-book');
+      gallery.setAttribute('role','region');
+      gallery.setAttribute('aria-label','Libro fotográfico de evidencias');
+
+      let current=0;
+      let touchStartX=null;
+
+      pages.forEach((page,i)=>{
+        page.classList.remove('book-active','book-backward');
+        page.setAttribute('aria-hidden', i===0 ? 'false':'true');
+        if(i===0) page.classList.add('book-active');
+      });
+
+      const hint=document.createElement('div');
+      hint.className='book-hint';
+      hint.textContent='Pasa las fotografías como las páginas de un libro. También puedes deslizar a izquierda o derecha.';
+
+      const controls=document.createElement('div');
+      controls.className='book-controls';
+      controls.innerHTML=`
+        <button class="book-nav book-prev" type="button" aria-label="Fotografía anterior">← Anterior</button>
+        <div class="book-page-indicator" aria-live="polite"></div>
+        <button class="book-nav book-next" type="button" aria-label="Fotografía siguiente">Siguiente →</button>
+      `;
+
+      gallery.insertAdjacentElement('beforebegin',hint);
+      gallery.insertAdjacentElement('afterend',controls);
+
+      const prev=controls.querySelector('.book-prev');
+      const next=controls.querySelector('.book-next');
+      const indicator=controls.querySelector('.book-page-indicator');
+
+      function showPage(index,direction=1){
+        if(index<0 || index>=pages.length || index===current) return;
+
+        pages[current].classList.remove('book-active','book-backward');
+        pages[current].setAttribute('aria-hidden','true');
+
+        current=index;
+        pages[current].classList.remove('book-backward');
+
+        // Reinicia la animación.
+        void pages[current].offsetWidth;
+
+        if(direction<0) pages[current].classList.add('book-backward');
+        pages[current].classList.add('book-active');
+        pages[current].setAttribute('aria-hidden','false');
+
+        update();
+      }
+
+      function update(){
+        indicator.innerHTML=`Página <strong>${current+1}</strong> de <strong>${pages.length}</strong>`;
+        prev.disabled=current===0;
+        next.disabled=current===pages.length-1;
+      }
+
+      prev.addEventListener('click',()=>showPage(current-1,-1));
+      next.addEventListener('click',()=>showPage(current+1,1));
+
+      gallery.addEventListener('touchstart',e=>{
+        touchStartX=e.changedTouches[0].clientX;
+      },{passive:true});
+
+      gallery.addEventListener('touchend',e=>{
+        if(touchStartX===null) return;
+        const delta=e.changedTouches[0].clientX-touchStartX;
+        if(Math.abs(delta)>45){
+          if(delta<0) showPage(current+1,1);
+          else showPage(current-1,-1);
+        }
+        touchStartX=null;
+      },{passive:true});
+
+      // Flechas del teclado cuando el libro tiene el foco.
+      gallery.tabIndex=0;
+      gallery.addEventListener('keydown',e=>{
+        if(e.key==='ArrowLeft'){
+          e.preventDefault();
+          showPage(current-1,-1);
+        }
+        if(e.key==='ArrowRight'){
+          e.preventDefault();
+          showPage(current+1,1);
+        }
+      });
+
+      update();
+    });
+  }
+
+  initPhotoBooks();
+
+</script>
+</body>
+</html>
